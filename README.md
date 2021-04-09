@@ -1,3 +1,1 @@
-# Szia, Szili :)
-
-## Szép napot!
+WIP
