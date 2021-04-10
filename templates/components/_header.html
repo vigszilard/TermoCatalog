@@ -1,0 +1,57 @@
+{% load static %}
+
+{% block header %}
+  <header id="top-bar" class="fixed-top">
+    <div class="container d-flex align-items-center">
+      <h1 class="logo mr-auto col-md-3">
+        <a href="{% url 'index' %}">
+          <img src="{% static 'img/termo-white.png' %}" alt="">
+        </a>
+      </h1>        
+      <nav class="nav-menu d-none d-md-block col-md-6">
+        <ul class="justify-content-center">
+          <li
+              {% if '/' == request.path %}
+                  class="nav-item active mr-3"
+              {% else %}
+                  class="nav-item mr-3"
+              {% endif %}
+          >
+              <a href="{% url 'index' %}">Produse</a>
+          </li>
+          <li
+              {% if '/' == request.path %}
+                  class="nav-item active mr-3"
+              {% else %}
+                  class="nav-item mr-3"
+              {% endif %}
+          >
+              <a href="{% url 'index' %}">Despre noi</a>
+          </li>
+          <li
+              {% if '/' == request.path %}
+                  class="nav-item active mr-3"
+              {% else %}
+                  class="nav-item mr-3"
+              {% endif %}
+          >
+              <a href="{% url 'index' %}">Contactați-ne</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="col-md-3">
+        <div class="social text-right">
+          <a href="https://www.termototal.ro/" target="_blank">
+            <i class="fas fa-globe"></i>
+          </a>
+          <a href="https://www.facebook.com/termototal/" target="_blank">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="https://www.instagram.com/termototal/" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}

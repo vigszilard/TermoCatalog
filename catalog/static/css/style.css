@@ -1,0 +1,155 @@
+/* General */
+
+body {
+    background-color: #F5F9FF;
+    color: #404756;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding-top: 5.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: #404756;
+}
+
+a:hover, li:hover > a {
+  text-decoration: none;
+  color: #A4ABBD;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #404756;
+}
+
+/* Header  */
+
+#top-bar {
+    background-color: #1378CE;
+    color: #F5F9FF;
+    font-size: 20px;
+}
+
+#top-bar img {
+    margin-top: 0.5rem;
+    height: 5rem;
+}
+
+.sticky {
+  font-size: 15px !important;
+}
+
+.sticky img {
+  height: 3rem !important;
+}
+
+.nav-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-menu > ul {
+  display: flex;
+}
+
+.nav-menu > ul > li {
+  position: relative;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.nav-menu a {
+  display: block;
+  position: relative;
+  color: #F5F9FF;
+  transition: 0.3s;
+}
+
+.nav-menu a:hover, .nav-menu li:hover > a {
+  color: #A4ABBD;
+}
+.nav-menu .active > a {
+    text-decoration: underline;
+}
+
+.social i {
+    color: #F5F9FF;
+    padding: 10px 0 10px 10px;
+}
+
+.social a:hover, .social a:hover > i {
+    color: #A4ABBD;
+}
+
+/* Footer */
+
+#main-footer {
+  box-sizing: border-box;
+}
+
+#navigation img {
+    width: auto;
+    height: 12rem;
+}
+
+#navigation a.disabled {
+  font-weight: bold;
+  color: #1378CE;
+}
+
+#copyright {
+    background-color: #A4ABBD;
+    color: #F5F9FF;
+    padding: 0.5rem;
+}
+
+/* Back to top button */
+
+.back-to-top {
+  right: 15px;
+  bottom: 15px;
+  position: fixed;
+  display: block;
+}
+
+.back-to-top i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background: #1378CE;
+  color: #F5F9FF;
+  transition: all 0.4s;
+}
+
+.back-to-top i:hover {
+  background: #A4ABBD;
+  color: #F5F9FF;
+}
+
+/* Categories */
+
+#categories .card {
+  position: relative;
+}
+
+
+#categories .card-title {
+  background-color: #1378CE;
+  color: #F5F9FF;
+  opacity: 60%;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  margin: 0;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#categories a:hover .card-title {
+  background-color: #1378CE;
+  opacity: 100%;
+}
