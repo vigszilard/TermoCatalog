@@ -14,12 +14,12 @@
     <div class="container">
       <h3 class="text-center mb-3">Categorii Produse</h3>
       <div class="row">
-        {% for i in '012345'|make_list %}
+        {% for _ in '012345'|make_list %}
           <div class="col-md-6 col-lg-4 mb-4">
             <a href="#">
               <div class="card rounded">
                 <img class="card-img-top rounded" src="https://itiles.ro/media/catalog/product/cache/f77387e2a93006f6b26bf5ff26100efb/w/a/walk01_1.jpeg" alt="">
-                <span class="card-title rounded-bottom text-center py-4">Categoria {{ i }}</span>
+                <span class="card-title rounded-bottom text-center py-2">Categoria {{ forloop.counter }}</span>
               </div>
             </a>
           </div>
