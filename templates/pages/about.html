@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  > Despre noi
+{% endblock %}
+
+{% block content %}
+    {% block header %}
+        {% include 'components/_header.html' %}
+    {% endblock %}
+
+    <h1 class="text-center">Despre noi</h1>
+
+    {% block partners %}
+        {% include 'components/_partners.html' %}
+    {% endblock %}
+
+    {% block footer %}
+        {% include 'components/_footer.html' %}
+    {% endblock %}
+
+{% endblock %}

@@ -153,3 +153,10 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #1378CE;
   opacity: 100%;
 }
+
+/* Partners */
+
+#suppliers img {
+  height: auto;
+  width: 5rem;
+}
