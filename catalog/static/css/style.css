@@ -69,7 +69,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #A4ABBD;
 }
 .nav-menu .active > a {
-    text-decoration: underline;
+    font-weight: bold;
 }
 
 .social i {
