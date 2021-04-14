@@ -34,3 +34,7 @@ $(window).scroll(function() {
       $('#top-bar').removeClass("sticky");
   }
 });
+
+// add dynamic year
+const date = new Date();
+document.querySelector('span.year').innerHTML = date.getFullYear();
