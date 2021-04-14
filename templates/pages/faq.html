@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+  > Intrebari frecvente
+{% endblock %}
+
+{% block content %}
+
+    {% block header %}
+        {% include 'components/_header.html' %}
+    {% endblock %}
+
+    <section id="faq">
+        <h1 class="text-center">Intrebari frecvente</h1>
+    </section>
+
+    {% block footer %}
+        {% include 'components/_footer.html' %}
+    {% endblock %}
+
+{% endblock %}

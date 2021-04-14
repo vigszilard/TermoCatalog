@@ -37,6 +37,15 @@
           >
               <a href="{% url 'contact' %}">Contact</a>
           </li>
+          <li
+              {% if '/faq' == request.path %}
+                  class="nav-item active mr-3"
+              {% else %}
+                  class="nav-item mr-3"
+              {% endif %}
+          >
+              <a href="{% url 'faq' %}">FAQ</a>
+          </li>
         </ul>
       </nav>
       <div class="col-md-3">
