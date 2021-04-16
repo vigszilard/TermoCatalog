@@ -1,11 +1,11 @@
 #header {
     height: 50px;
     background: #1378ce;
-    color: #fff;
+    color: #f5f9ff;
 }
  
 #branding h1 {
-    color: #fff;
+    color: #f5f9ff;
 }
 
 a:link,
@@ -28,10 +28,10 @@ div.breadcrumbs a {
 
 .button, input[type=submit], input[type=button], .submit-row input, a.button {
     background: #1378ce;
-    color: #fff;
+    color: #f5f9ff;
 }
 
 .button.default, input[type=submit].default, .submit-row input.default {
     background: #1378ce;
-    color: #fff;
+    color: #f5f9ff;
 }
