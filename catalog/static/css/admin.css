@@ -3,7 +3,11 @@
     background: #1378ce;
     color: #f5f9ff;
 }
- 
+
+#main {
+    background: #f5f9ff;
+}
+
 #branding h1 {
     color: #f5f9ff;
 }
