@@ -9,7 +9,13 @@
         {% include 'components/_header.html' %}
     {% endblock %}
 
-    <h1 class="text-center">Despre noi</h1>
+    <section id="about">
+        <img src="{{ about_page.photo_1.url }}" class="img-fluid" alt="">
+        <div class="container">
+            {{ about_page.content }}
+        </div>
+        <img src="{{ about_page.photo_2.url }}" class="img-fluid" alt="">
+    </section>
 
     {% block partners %}
         {% include 'components/_partners.html' %}
