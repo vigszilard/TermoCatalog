@@ -3,9 +3,17 @@ from django.http import HttpResponse
 from django.views.generic import TemplateView
 from pages.models import AboutPage
 
+from categories.models import Category 
+
 
 def index(request):
-    return render(request, 'pages/index.html')
+    categories = Category.objects.all()
+
+    context = {
+        'categories': categories
+    }
+
+    return render(request, 'pages/index.html', context)
 
 
 class AboutPageView(TemplateView):
