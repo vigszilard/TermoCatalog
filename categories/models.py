@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.safestring import mark_safe
 import os
 
 def category_dir_path(instance, filename):
@@ -16,6 +17,11 @@ class Category(models.Model):
     youtube_link = models.CharField(max_length=250, blank=True)
     external_link = models.CharField(max_length=250, blank=True)
 
+    def display_img_preview(self):
+        return mark_safe('<img src="{}" width="100" />'.format(self.display_img.url))
+    display_img_preview.short_description = 'Display Image Preview'
+    display_img_preview.allow_tags = True
+
     def __str__(self):
         return self.name
 
@@ -25,3 +31,4 @@ class Gallery(models.Model):
 
     def __str__(self):
         return self.category.name
+        
