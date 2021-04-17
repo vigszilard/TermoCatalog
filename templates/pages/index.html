@@ -14,16 +14,22 @@
     <div class="container">
       <h3 class="text-center mb-3">Categorii Produse</h3>
       <div class="row">
-        {% for _ in '012345'|make_list %}
-          <div class="col-md-6 col-lg-4 mb-4">
-            <a href="#">
-              <div class="card rounded">
-                <img class="card-img-top rounded" src="https://itiles.ro/media/catalog/product/cache/f77387e2a93006f6b26bf5ff26100efb/w/a/walk01_1.jpeg" alt="">
-                <span class="card-title rounded-bottom text-center py-2">Categoria {{ forloop.counter }}</span>
-              </div>
-            </a>
+        {% if categories %}
+          {% for category in categories %}
+            <div class="col-md-6 col-lg-4 mb-4">
+              <a href="#">
+                <div class="card rounded">
+                  <img class="card-img-top rounded" src="{{ category.display_img.url }}" alt="">
+                  <span class="card-title rounded-bottom text-center py-2">{{ category.name }}</span>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="col-md-12 text-center">
+            <p>No Categories Defined</p>
           </div>
-        {% endfor %}
+        {% endif %}
       </div>
     </div>
   </section>
