@@ -129,11 +129,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'catalog/static')
 ]
 
-# Media Folder Settings
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-
 # RichTextField custom
 CKEDITOR_CONFIGS = {
    'default': {
