@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  > Nume Categorie ??
+{% endblock %}
+
+{% block content %}
+
+  {% block header %}
+    {% include 'components/_header.html' %}
+  {% endblock %}
+
+  <h3 class="text-center col-md-12 my-2">{{ category.name }}</h3>
+
+  <section id="products" class="py-5">
+    <div class="container">
+      <h3 class="text-center mb-3">Seturi uzuale</h3>
+      <div class="row">
+        {% for _ in '012345'|make_list %}
+          <div class="col-md-6 col-lg-4 mb-4">
+            <a href="#">
+              <div class="card rounded">
+                <img class="card-img-top rounded" src="https://itiles.ro/media/catalog/product/cache/f77387e2a93006f6b26bf5ff26100efb/w/a/walk01_1.jpeg" alt="">
+                <span class="card-title rounded-bottom text-center py-2">Set {{ forloop.counter }}</span>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {% if category.description %}
+    <p>{{ category.description }}</p>
+    <hr>
+  {% endif %}
+
+  {% if category.youtube_link %}
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{category.youtube_link|cut:'https://www.youtube.com/watch?v='}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <hr>
+  {% endif %}
+
+  {% if category.external_link %}
+    <a href="{{ category.external_link }}" target="_blank" rel="noopener noreferrer">Resurse externe</a>
+    <hr>
+  {% endif %}
+  
+  {% if gallery %}
+    {% for img in gallery %}
+      <img src="{{img.photo.url}}" alt="">
+    {% endfor %}
+  {% endif %}
+
+  {% block footer %}
+    {% include 'components/_footer.html' %}
+  {% endblock %}
+  
+{% endblock %}
