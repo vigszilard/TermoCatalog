@@ -17,7 +17,7 @@
         {% if categories %}
           {% for category in categories %}
             <div class="col-md-6 col-lg-4 mb-4">
-              <a href="#">
+              <a href="{% url 'category' category.id %}">
                 <div class="card rounded">
                   <img class="card-img-top rounded" src="{{ category.display_img.url }}" alt="">
                   <span class="card-title rounded-bottom text-center py-2">{{ category.name }}</span>
