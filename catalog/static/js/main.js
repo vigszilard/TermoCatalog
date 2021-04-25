@@ -18,7 +18,7 @@ $(document).ready(function() {
   });
    
   // add shadow to categories on hover
-  $( ".card" ).hover(function() {
+  $( "#categories .card" ).hover(function() {
     $(this).addClass('shadow-lg').css('cursor', 'pointer'); 
   }, function() {
     $(this).removeClass('shadow-lg');
@@ -38,3 +38,13 @@ $(window).scroll(function() {
 // add dynamic year
 const date = new Date();
 document.querySelector('span.year').innerHTML = date.getFullYear();
+
+//fetch google maps
+let map;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById("googleMap"), {
+    center: { lat: 47.02124873693511, lng: 23.87716751017298 },
+    zoom: 16,
+  });
+}

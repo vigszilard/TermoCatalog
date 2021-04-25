@@ -9,8 +9,112 @@
     {% block header %}
         {% include 'components/_header.html' %}
     {% endblock %}
-
-    <h1 class="text-center">Contactați-ne</h1>
+    <section id="contact-details">
+        <div class="container"></div>
+            <h3 class="text-center mb-3">Contactați-ne</h3>
+        </div>
+        <div class="container justify-content-center">
+            <div class="row">
+                <div class="col-md-4 card-body card information-cell">
+                    {% if contact_page %}
+                        <div>
+                            <label class="label" for="informationCell-address">Adresa</label>
+                            <p id="informationCell-address">
+                                Strada {{ contact_page.street_name }} 
+                                {% if contact_page.street_number %}
+                                    , nr. {{ contact_page.street_number }}
+                                {% endif %}
+                                {% if contact_page.unit %}
+                                    , bl. {{ contact_page.unit }}
+                                {% endif %}
+                                {% if contact_page.entrance %}
+                                    , sc. {{ contact_page.entrance }}
+                                {% endif %}
+                                <br>
+                                {{ contact_page.city }}
+                                , {{ contact_page.region }}
+                                , {{ contact_page.country }}
+                                {% if contact_page.zip_code %}
+                                    , {{ contact_page.zip_code }}
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div>
+                            <label class="label" for="informationCell-phone">Telefon</label>
+                            <p id="informationCell-phone">
+                                {% if contact_page.landline %}
+                                    Fix: {{ contact_page.landline }}
+                                {% endif %}
+                                <br>
+                                {% if contact_page.fax %}
+                                    Fax: {{ contact_page.fax }}
+                                {% endif %}
+                                <br>
+                                {% if contact_page.mobile %}
+                                    Mobil: {{ contact_page.mobile }}
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div>
+                            <label class="label" for="informationCell-email">E-mail</label>
+                            <p id="informationCell-email">
+                                {{ contact_page.email }}
+                            </p>
+                        </div>
+                        <div>
+                            <label class="label" for="informationCell-schedule">Program de lucru</label>
+                            <p id="informationCell-schedule">
+                                {{ contact_page.schedule | linebreaks }}
+                            </p>
+                        </div>
+                    {% else %}
+                        <div class="col-md-4 card-body card information-cell">
+                            <p>No contact details defined</p>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-8 card card-body text-center">
+                    <div id="googleMap" class="z-depth-1-half"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact-form">
+        <hr>
+        <div class="container justify-content-center">
+            <p class="text-center">Pentru întrebări sau informații suplimentare, contactați Echipa Termotatotal 
+                prin completarea formularului de mai jos.
+            </p>
+            <form class="form-group align-items-center" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="contactForm-body mx-auto form-container">
+                    <div class="form-outline">
+                        <i class="far fa-user"></i>
+                        <input type="text" id="contactForm-name" class="form-control validate" placeholder="Nume, Prenume *" required />
+                        <label class="form-label" data-error="wrong" data-success="right" for="contactForm-name"></label>
+                    </div>
+                    <div class="form-outline">
+                        <i class="far fa-envelope"></i>
+                        <input type="email" id="contactForm-email" class="form-control validate" placeholder="E-mail *" required />
+                        <label class="form-label" data-error="wrong" data-success="right" for="contactForm-email"></label>
+                    </div>
+                    <div class="form-outline">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="contactForm-phone" class="form-control validate" placeholder="Telefon *" required>
+                        <label class="form-label" data-error="wrong" data-success="right" for="contactForm-phone"></label>
+                    </div>
+                    <div class="form-outline">
+                        <i class="far fa-comment-dots"></i>                       
+                        <textarea type="text" name="message" id="contactForm-message" class="form-control validate" placeholder="Mesajul tău... *"></textarea>
+                        <label class="form-label" data-error="wrong" data-success="right" for="contactForm-messsage"></label>
+                    </div>
+                </div>
+                <div class="contactForm-footer d-flex justify-content-center content">
+                    <button class="btn btn-submit" type="submit">Trimite</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
     {% block footer %}
         {% include 'components/_footer.html' %}

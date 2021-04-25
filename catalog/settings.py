@@ -138,6 +138,7 @@ MEDIA_URL = '/media/'
 CKEDITOR_CONFIGS = {
    'default': {
         'toolbar_Full': [
+            ['Image' ],
             ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike'],
             ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
             ['NumberedList', 'BulletedList'], ['Indent', 'Outdent'],
