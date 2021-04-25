@@ -10,11 +10,9 @@
     {% endblock %}
 
     <section id="about">
-        <img src="{{ about_page.photo_1.url }}" class="img-fluid" alt="">
-        <div class="container">
-            {{ about_page.content }}
+        <div class="container content">
+            {{ about_page.content | safe }}
         </div>
-        <img src="{{ about_page.photo_2.url }}" class="img-fluid" alt="">
     </section>
 
     {% block partners %}
