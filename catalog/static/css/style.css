@@ -29,6 +29,20 @@ section:last-of-type {
   padding-bottom: 3rem;
 }
 
+.success-message {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+  justify-content: center;
+  color: #0d9038;
+  font-size: 20px;
+}
+
+.success-message i {
+  padding-right: 0.5rem;
+  vertical-align: text-bottom;
+}
+
 /* Header  */
 
 #top-bar {
@@ -261,7 +275,6 @@ section:last-of-type {
 .contactForm-footer button {
   color: #F5F9FF;
   background-color: #1378CE;
-  width: 20%;
   font-weight: bold;
   font-size: 20px;
 }
