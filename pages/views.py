@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.core.mail import send_mail, BadHeaderError
+from django.contrib import messages
 from django.views.generic import TemplateView
+from django.template import loader
 from pages.models import AboutPage, ContactPage
-
 from categories.models import Category 
 
 
@@ -37,6 +39,32 @@ class ContactPageView(TemplateView):
         context['contact_page'] = ContactPage.objects.first()
         return context
 
+def send_contact_form(request):
+    if request.method == 'POST':
+        subject = "Termototal contact"
+        body = {
+            'name' : request.POST['name'],
+            'email' : request.POST['email'],
+            'phone' : request.POST['phone'],
+            'message' : request.POST['message'],
+        }
+        html_message = loader.render_to_string(
+            'components/_email_template.html',
+            {
+                'name': body['name'],
+                'email':  body['email'],
+                'phone': body['phone'],
+                'message': body['message'] 
+            }
+        )
+        message = '\n'.join(body.values())
+        try:
+            send_mail(subject, message, 'rafigeorgescu@gmail.com', ['rafigeorgescu@gmail.com'], html_message=html_message)
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
+        messages.success(request, 'Solicitarea dvs. a fost trimisă cu succes.')
+        return redirect("contact")
+    return render(request, "pages/contact.html")
 
 def faq(request):
     return render(request, 'pages/faq.html')
