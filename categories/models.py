@@ -13,6 +13,7 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
     name = models.CharField(max_length=100)
     display_img = models.ImageField(upload_to=category_dir_path)
+    display_img.help_text = 'Dimenxiuni recomandate: '
     description = models.TextField(blank=True)
     youtube_link = models.CharField(max_length=250, blank=True)
     external_link = models.CharField(max_length=250, blank=True)
