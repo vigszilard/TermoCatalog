@@ -244,7 +244,6 @@ section:last-of-type {
 #googleMap {
   height: 400px;
   width: 100%;
-  /* filter: grayscale(100%) */
 }
 
 
@@ -282,4 +281,53 @@ section:last-of-type {
 .contactForm-footer button:hover {
   background-color: #A4ABBD;
   color: #F5F9FF;
+}
+
+/* FAQ page */
+
+#accordion .card, #accordion .card-header {
+  background-color: #F5F9FF;
+  border: 0;
+}
+
+#accordion hr {
+  margin: 0.5rem;
+}
+
+#accordion button {
+  text-align: left;
+  width: 100%;
+  padding: 0;
+  color: #404756;
+  font-size: 1.25rem;
+}
+
+#accordion button, #accordion button > h5 {
+  text-decoration: none;
+}
+
+#accordion button::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: '\f067';
+  color: #404756;
+  float: right;
+}
+
+#accordion button:not(.collapsed) {
+  color: #1378CE;
+  font-weight: 900;
+}
+
+#accordion button:not(.collapsed)::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: '\f068';
+  color: #1378CE;
+  float: right;
+}
+
+#accordion button.collapsed:hover, #accordion button.collapsed:hover::after {
+  text-decoration: none;
+  color: #A4ABBD;
 }
