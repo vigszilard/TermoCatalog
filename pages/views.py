@@ -4,7 +4,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.contrib import messages
 from django.views.generic import TemplateView
 from django.template import loader
-from pages.models import AboutPage, ContactPage
+from pages.models import AboutPage, ContactPage, FAQPage
 from categories.models import Category 
 
 
@@ -66,6 +66,12 @@ def send_contact_form(request):
         return redirect("contact")
     return render(request, "pages/contact.html")
 
-def faq(request):
-    return render(request, 'pages/faq.html')
+class FAQPageView(TemplateView):
+    template_name = 'pages/faq.html'
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of FAQ template
+        context['faqs'] = FAQPage.objects.all()
+        return context
