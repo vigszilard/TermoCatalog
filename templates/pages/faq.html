@@ -13,7 +13,28 @@
     {% endblock %}
 
     <section id="faq">
-        <h1 class="text-center">Intrebari frecvente</h1>
+        <div class="container">
+            <h3 class="text-center mb-5">Întrebări frecvente</h3>
+        </div>
+        <div id="accordion" class="container">
+            {% if faqs %}
+                {% for faq in faqs %}
+                    <div class="card">
+                        <div class="card-header" id="heading_{{ faq.pk }}">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse_{{ faq.pk }}" aria-expanded="false" aria-controls="collapse_{{ faq.pk }}">
+                                    {{ faq.question }}
+                            </button>
+                        </div>
+                        <div id="collapse_{{ faq.pk }}" class="collapse" aria-labelledby="heading_{{ faq.pk }}" data-parent="#accordion">
+                            <div class="card-body">
+                                {{ faq.answer | linebreaks }}
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            {% endif %}
+        </div>
     </section>
 
     {% block footer %}

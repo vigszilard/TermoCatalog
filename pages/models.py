@@ -22,7 +22,7 @@ class AboutPage(models.Model):
         validate_only_one_instance(self)
 
     def __str__(self):
-        return 'About page'
+        return 'About page details'
 
 class ContactPage(models.Model):
     street_name = CharField(max_length=100)
@@ -46,4 +46,15 @@ class ContactPage(models.Model):
         validate_only_one_instance(self)
 
     def __str__(self):
-        return 'Contact page'
+        return 'Contact page details'
+
+class FAQPage(models.Model):
+    question = TextField()
+    answer = TextField()
+
+    class Meta:
+        verbose_name_plural = 'faqPage'
+        verbose_name = 'faq'
+
+    def __str__(self):
+        return 'FAQ page details'
