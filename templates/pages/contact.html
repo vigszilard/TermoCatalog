@@ -10,9 +10,17 @@
         {% include 'components/_header.html' %}
     {% endblock %}
     <section id="contact-details">
-        <div class="container"></div>
-            <h3 class="text-center mb-5">Contactați-ne</h3>
+        <div class="container">
+          <h3 class="text-center mb-5">Contactați-ne</h3>
         </div>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert success-message" role="alert">
+                    <i class="fas fa-check"></i>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
         <div class="container justify-content-center">
             <div class="row">
                 <div class="col-md-4 card-body card information-cell">
@@ -85,28 +93,28 @@
             <p class="text-center">Pentru întrebări sau informații suplimentare, contactați Echipa Termotatotal 
                 prin completarea formularului de mai jos.
             </p>
-            <form class="form-group align-items-center" method="POST" enctype="multipart/form-data">
+            <form class="form-group align-items-center" method="POST" enctype="multipart/form-data" action="{% url 'send_contact_form' %}">
                 {% csrf_token %}
                 <div class="contactForm-body mx-auto form-container">
                     <div class="form-outline">
                         <i class="far fa-user"></i>
-                        <input type="text" id="contactForm-name" class="form-control validate" placeholder="Nume, Prenume *" required />
+                        <input type="text" id="contactForm-name" name="name" class="form-control validate" placeholder="Nume, Prenume *" required />
                         <label class="form-label" data-error="wrong" data-success="right" for="contactForm-name"></label>
                     </div>
                     <div class="form-outline">
                         <i class="far fa-envelope"></i>
-                        <input type="email" id="contactForm-email" class="form-control validate" placeholder="E-mail *" required />
+                        <input type="email" id="contactForm-email" name="email" class="form-control validate" placeholder="E-mail *" required />
                         <label class="form-label" data-error="wrong" data-success="right" for="contactForm-email"></label>
                     </div>
                     <div class="form-outline">
                         <i class="fas fa-phone"></i>
-                        <input type="tel" id="contactForm-phone" class="form-control validate" placeholder="Telefon *" required>
+                        <input type="tel" id="contactForm-phone" name="phone" class="form-control validate" placeholder="Telefon *" required>
                         <label class="form-label" data-error="wrong" data-success="right" for="contactForm-phone"></label>
                     </div>
                     <div class="form-outline">
                         <i class="far fa-comment-dots"></i>                       
-                        <textarea type="text" name="message" id="contactForm-message" class="form-control validate" placeholder="Mesajul tău... *"></textarea>
-                        <label class="form-label" data-error="wrong" data-success="right" for="contactForm-messsage"></label>
+                        <textarea type="text" name="message" id="contactForm-message" class="form-control validate" placeholder="Mesajul tău... *" required></textarea>
+                        <label class="form-label" data-error="wrong" data-success="right" for="contactForm-message"></label>
                     </div>
                 </div>
                 <div class="contactForm-footer d-flex justify-content-center content">

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.core.mail',
     'ckeditor'
 ]
 
@@ -141,3 +142,10 @@ CKEDITOR_CONFIGS = {
         'skin': 'moono',
     },
 }
+
+# Email Backend AWS SES server
+EMAIL_BACKEND = 'django_ses.SESBackend'
+
+# AWS SES access key
+AWS_ACCESS_KEY_ID = 'key'
+AWS_SECRET_ACCESS_KEY = 'pass'
