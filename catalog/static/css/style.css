@@ -229,6 +229,10 @@ body > section:last-of-type {
   color: #A4ABBD !important;
 }
 
+#suppliers {
+  text-align: center;
+}
+
 /* Contact page */
 
 #contact-details .card {
