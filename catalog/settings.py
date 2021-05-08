@@ -143,9 +143,12 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-# Email Backend AWS SES server
-EMAIL_BACKEND = 'django_ses.SESBackend'
+# # Email Settings
 
-# AWS SES access key
-AWS_ACCESS_KEY_ID = 'key'
-AWS_SECRET_ACCESS_KEY = 'pass'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'mail.termototal.ro'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'svc@termototal.ro'
+EMAIL_HOST_PASSWORD = '0pXNQ1BxQbOW'
+EMAIL_USE_SSL = True

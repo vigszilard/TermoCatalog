@@ -59,7 +59,7 @@ def send_contact_form(request):
         )
         message = '\n'.join(body.values())
         try:
-            send_mail(subject, message, 'rafigeorgescu@gmail.com', ['rafigeorgescu@gmail.com'], html_message=html_message)
+            send_mail(subject, message, 'svc@termototal.ro', ['proiectare@termototal.ro'], fail_silently=False, html_message=html_message)
         except BadHeaderError:
             return HttpResponse('Invalid header found.')
         messages.success(request, 'Solicitarea dvs. a fost trimisă cu succes.')
