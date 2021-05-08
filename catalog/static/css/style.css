@@ -182,13 +182,14 @@ body > section:last-of-type {
   opacity: 100%;
 }
 
-/* Partners */
+.owl-stage {
+  display: flex;
+  align-items: center;
+  }
 
-#suppliers img {
-  height: auto;
-  width: 5rem;
+  .owl-prev.disabled , .owl-next.disabled{
+    display: none;
 }
-
 /* About page */
 
 #about {
@@ -227,10 +228,6 @@ body > section:last-of-type {
 
 #about h3, #about h4, #about h5, #about h6 {
   color: #A4ABBD !important;
-}
-
-#suppliers {
-  text-align: center;
 }
 
 /* Contact page */
