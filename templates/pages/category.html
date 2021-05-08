@@ -47,9 +47,24 @@
   {% endif %}
   
   {% if gallery %}
-    {% for img in gallery %}
-      <img src="{{img.photo.url}}" alt="">
-    {% endfor %}
+  <section id="listing" class="py-4">
+     <div class="container">
+        <div class="row">
+           <div class="col-md-12">
+              <h3>Galerie</h3>
+              <div class="row mb-5 thumbs">
+                 {% for img in gallery %}
+                 <div class="col-md-4 py-4">
+                    <a href="{{img.photo.url}}" data-lightbox="home-images">
+                    <img src="{{img.photo.url}}" alt="" class="img-fluid">
+                    </a>
+                 </div>
+                 {% endfor %}
+              </div>
+           </div>
+        </div>
+     </div>
+  </section>
   {% endif %}
 
   {% block footer %}
