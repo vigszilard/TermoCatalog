@@ -184,9 +184,26 @@ body > section:last-of-type {
 
 /* Partners */
 
-#suppliers img {
-  height: auto;
-  width: 5rem;
+.owl-stage {
+  display: flex;
+  align-items: center;
+}
+
+.owl-dot.active span {
+  background: #1378CE!important;
+}
+
+.owl-dot:hover span {
+  background: #A4ABBD!important;
+}
+
+.owl-dot {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#suppliers {
+  padding-bottom: 0;
 }
 
 /* About page */

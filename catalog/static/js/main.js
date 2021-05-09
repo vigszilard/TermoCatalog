@@ -18,7 +18,7 @@ $(document).ready(function() {
   });
    
   // add shadow to categories on hover
-  $( "#categories .card" ).hover(function() {
+  $("#categories .card" ).hover(function() {
     $(this).addClass('shadow-lg').css('cursor', 'pointer'); 
   }, function() {
     $(this).removeClass('shadow-lg');
@@ -29,8 +29,7 @@ $(document).ready(function() {
 $(window).scroll(function() {
   if ($(this).scrollTop() > 250){  
       $('#top-bar').addClass("sticky");
-  }
-  else{
+  } else{
       $('#top-bar').removeClass("sticky");
   }
 });
@@ -41,10 +40,31 @@ document.querySelector('span.year').innerHTML = date.getFullYear();
 
 //fetch google maps
 let map;
-
 function initMap() {
-  map = new google.maps.Map(document.getElementById("googleMap"), {
-    center: { lat: 47.02124873693511, lng: 23.87716751017298 },
-    zoom: 16,
-  });
+  if (document.getElementById("googleMap") != null) {
+    map = new google.maps.Map(document.getElementById("googleMap"), {
+      center: { lat: 47.02124873693511, lng: 23.87716751017298 },
+      zoom: 16,
+    });
+  }
 }
+
+//Owl carousel
+$('.owl-carousel').owlCarousel({
+  loop:true,
+  nav:false,
+  autoplay:true,
+  margin:100,
+  responsiveClass:true,
+  responsive:{
+    0:{
+      items:1
+    },
+    600:{
+      items:3
+    },
+    1000:{
+      items:4
+    }
+  }
+});
