@@ -2,16 +2,15 @@
 
 {% block partners %}
     <section id="suppliers">
-        <hr>
-        <div class="owl-carousel owl-theme container">
-            <div><img src="https://logodownload.org/wp-content/uploads/2020/06/guardian-glass-logo-0.png"></div>
-            <div><img src="{% static 'img/logo-geze.png' %}"></div>
-            <div><img src="https://uspto.report/TM/76097276/mark.png"></div>
-            <div><img src="{% static 'img/logo-geze.png' %}"></div>
-            <div><img src="https://iconape.com/wp-content/files/qi/274539/svg/saint-gobain-sekurit-logo-logo-icon-png-svg.png"></div>
-            <div><img src="{% static 'img/logo-geze.png' %}"></div>
-            <div><img src="https://images.squarespace-cdn.com/content/v1/52fa2ee5e4b099080c747e4a/1536831735030-9ALHEJKXIO2MY6BRILEJ/ke17ZwdGBToddI8pDm48kBqpn9M_gyFA9l30uqfmkx5Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIZ9_S9EPyOqH42QzTk3RLOL9uVcaFIcPx3BAn_xaVpWw/metalglas.png"></div>
-            <div><img src="{% static 'img/logo-geze.png' %}"></div>
-        </div>
+        {% if partners %}
+            <hr>
+            <div class="owl-carousel owl-theme container">
+                {% for partner in partners %}
+                    <div>
+                        <img src="{{ partner.logo.url }}" alt="{{ partner.name }}">
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </section>
 {% endblock %}
