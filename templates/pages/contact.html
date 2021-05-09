@@ -15,10 +15,17 @@
         </div>
         {% if messages %}
             {% for message in messages %}
-                <div class="alert success-message" role="alert">
-                    <i class="fas fa-check"></i>
-                    {{ message }}
-                </div>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <div class="alert error-message" role="alert">
+                        <i class="fas fa-times"></i>
+                        {{ message }}
+                    </div>
+                {% else %}
+                    <div class="alert success-message" role="alert">
+                        <i class="fas fa-check"></i>
+                        {{ message }}
+                    </div>
+                {% endif %}
             {% endfor %}
         {% endif %}
         <div class="container justify-content-center">

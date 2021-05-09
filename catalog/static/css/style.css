@@ -34,11 +34,25 @@ body > section:last-of-type {
   align-items: center;
   padding-bottom: 1rem;
   justify-content: center;
-  color: #0d9038;
+  color: #008B46;
+  font-size: 20px;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+  justify-content: center;
+  color: #CE4839;
   font-size: 20px;
 }
 
 .success-message i {
+  padding-right: 0.5rem;
+  vertical-align: text-bottom;
+}
+
+.error-message i {
   padding-right: 0.5rem;
   vertical-align: text-bottom;
 }

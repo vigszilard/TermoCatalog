@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 from django.template import loader
 from pages.models import AboutPage, ContactPage, FAQPage
 from categories.models import Category 
+from smtplib import SMTPException
 
 
 def index(request):
@@ -62,6 +63,10 @@ def send_contact_form(request):
             send_mail(subject, message, 'svc@termototal.ro', ['proiectare@termototal.ro'], fail_silently=False, html_message=html_message)
         except BadHeaderError:
             return HttpResponse('Invalid header found.')
+        except SMTPException as ex:
+            messages.error(request, 'Solicitarea dvs. nu a putut fi trimisă. Vă rugăm să reîncercați.')
+            print("The email could not be sent", ex)
+            return redirect("contact")
         messages.success(request, 'Solicitarea dvs. a fost trimisă cu succes.')
         return redirect("contact")
     return render(request, "pages/contact.html")
