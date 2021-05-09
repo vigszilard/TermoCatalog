@@ -24,6 +24,13 @@ class AboutPage(models.Model):
     def __str__(self):
         return 'About page details'
 
+class Partner(models.Model):
+    name = CharField(max_length=100)
+    logo = ImageField(upload_to='photos/about/partners/')
+
+    def __str__(self):
+        return self.name
+
 class ContactPage(models.Model):
     street_name = CharField(max_length=100)
     street_number = CharField(max_length=20, blank=True)
