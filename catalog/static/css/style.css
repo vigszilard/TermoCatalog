@@ -182,14 +182,30 @@ body > section:last-of-type {
   opacity: 100%;
 }
 
+/* Partners */
+
 .owl-stage {
   display: flex;
   align-items: center;
-  }
-
-  .owl-prev.disabled , .owl-next.disabled{
-    display: none;
 }
+
+.owl-dot.active span {
+  background: #1378CE!important;
+}
+
+.owl-dot:hover span {
+  background: #A4ABBD!important;
+}
+
+.owl-dot {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#suppliers {
+  padding-bottom: 0;
+}
+
 /* About page */
 
 #about {
