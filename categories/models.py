@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.safestring import mark_safe
+from ckeditor.fields import RichTextField
 import os
 
 def category_dir_path(instance, filename):
@@ -14,7 +15,7 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
     display_img = models.ImageField(upload_to=category_dir_path)
     display_img.help_text = 'Dimenxiuni recomandate: '
-    description = models.TextField(blank=True)
+    description = RichTextField()
     youtube_link = models.CharField(max_length=250, blank=True)
     external_link = models.CharField(max_length=250, blank=True)
 

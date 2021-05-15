@@ -32,7 +32,7 @@
   </section>
 
   {% if category.description %}
-    <p>{{ category.description }}</p>
+    <p>{{ category.description | safe }}</p>
     <hr>
   {% endif %}
 
