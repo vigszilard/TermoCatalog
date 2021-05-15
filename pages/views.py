@@ -10,7 +10,7 @@ from smtplib import SMTPException
 
 
 def index(request):
-    categories = Category.objects.all()
+    categories = Category.sorted_by_relevance.all()
 
     context = {
         'categories': categories
