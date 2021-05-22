@@ -66,12 +66,12 @@
   <section id="products">
     <div class="container">
       <div class="row">
-        {% for _ in '012345'|make_list %}
+        {% for product in products %}
           <div class="col-md-6 col-lg-4 mb-4">
-            <a href="#">
+            <a href="{% url 'product' product.id %}">
               <div class="card rounded">
-                <img class="card-img-top rounded" src="https://itiles.ro/media/catalog/product/cache/f77387e2a93006f6b26bf5ff26100efb/w/a/walk01_1.jpeg" alt="">
-                <span class="card-title rounded-bottom text-center py-2">Set {{ forloop.counter }}</span>
+                <img class="card-img-top rounded" src="{{ product.display_img.url }}" alt="">
+                <span class="card-title rounded-bottom text-center py-2">{{ product.name }}</span>
               </div>
             </a>
           </div>
