@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  > {{ product.name }}
+{% endblock %}
+
+{% block content %}
+
+{% block header %}
+  {% include 'components/_header.html' %}
+{% endblock %}
+
+<div class="col-md12 my-4 container">
+  <span>{{ product.category }} > {{ product.name }}</span>
+</div>
+
+<div class="col-md-12 my-4 text-center">
+  <img src="{{ product.display_img.url }}" alt="" height="400px">
+</div>
+
+<div class="col-md12 my-4">
+  <div class="container"> {{ product.description | safe }}</div>
+</div>
+
+{% if product.youtube_link %}
+  <div class="col-md12 my-4 text-center">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{category.youtube_link|cut:'https://www.youtube.com/watch?v='}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <hr>
+  </div>
+{% endif %}
+
+{% if product.external_link %}
+  <div class="col-md12 my-4 text-center">
+    <a href="{{ product.external_link }}" target="_blank" rel="noopener noreferrer">Resurse externe</a>
+    <hr>
+  </div>
+{% endif %}
+
+{% endblock %}
