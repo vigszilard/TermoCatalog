@@ -362,3 +362,68 @@ body > section:last-of-type {
   text-decoration: none;
   color: #A4ABBD;
 }
+
+/* Category page */
+
+#gallery .carousel-thumbnails .carousel-indicators {
+  position: static;
+  margin-right: 0;
+  margin-left: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+#gallery .carousel-thumbnails .carousel-indicators li {
+  height: auto;
+  width: auto;
+  background-color: transparent;
+}
+
+#gallery .carousel-inner {
+  border: 1px #1378CE;
+}
+
+#gallery .carousel-item .gallery-img {
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat no-repeat;
+  height: 400px;
+  width: auto;
+  cursor: zoom-in;
+}
+
+@media only screen and (max-width: 500px) {
+  .gallery-img{
+      height: 200px!important;
+  }
+}
+
+#gallery .carousel-indicators .gallery-thumbnail {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat no-repeat;
+  height: 100px;
+  width: 100px;
+}
+
+@media only screen and (max-width: 500px) {
+  .gallery-thumbnail{
+      height: 50px !important;
+      width: 50px !important;
+  }
+}
+
+#gallery .carousel-outer {
+  position: relative;
+}
+
+#gallery .carousel-control-prev, #gallery .carousel-control-next {
+  color: #404756;
+  font-size: 3rem;
+  width: 3rem;
+}
+
+#gallery #carousel-thumb {
+  border: 1px solid rgba(0, 0, 0, .125);
+  border-radius: .25rem;
+}

@@ -4,7 +4,7 @@
     <section id="suppliers">
         {% if partners %}
             <hr>
-            <div class="owl-carousel owl-theme container">
+            <div class="owl-carousel partners owl-theme container">
                 {% for partner in partners %}
                     <div>
                         <img src="{{ partner.logo.url }}" alt="{{ partner.name }}">
