@@ -50,7 +50,7 @@ function initMap() {
 }
 
 //Owl carousel
-$('.owl-carousel').owlCarousel({
+$('.owl-carousel.partners').owlCarousel({
   loop:true,
   nav:false,
   autoplay:true,
