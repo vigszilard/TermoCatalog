@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_reorder',
     'products.apps.ProductsConfig',
     'categories.apps.CategoriesConfig',
     'pages.apps.PagesConfig',
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'admin_reorder.middleware.ModelAdminReorder',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,6 +54,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+ADMIN_REORDER = (
+    {'app': 'auth', 'label': 'Authorisation', 'models': ('auth.User', )},
+    'pages',
+    'categories',
+    'products'
+)
 
 ROOT_URLCONF = 'catalog.urls'
 
