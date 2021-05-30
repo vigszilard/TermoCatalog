@@ -16,22 +16,16 @@
     </div>
     <div class="container">
       <div class="row">
-        {% if categories %}
-          {% for category in categories %}
-            <div class="col-md-6 col-lg-4 mb-4">
-              <a href="{% url 'category' category.id %}">
-                <div class="card rounded">
-                  <img class="card-img-top rounded" src="{{ category.display_img.url }}" alt="">
-                  <span class="card-title rounded-bottom text-center py-2">{{ category.name }}</span>
-                </div>
-              </a>
-            </div>
-          {% endfor %}
-        {% else %}
-          <div class="col-md-12 text-center">
-            <p>No Categories Defined</p>
+        {% for category in categories %}
+        <div class="col-md-4 col-lg-3 mb-4 col-sm-6">
+          <a href="{% url 'category' category.id %}">
+              <div class="card rounded h-100">
+                <img class="card-img-top rounded h-100" src="{{ category.display_img.url }}" alt="">
+                <span class="card-title rounded-bottom text-center py-2">{{ category.name }}</span>
+              </div>
+            </a>
           </div>
-        {% endif %}
+        {% endfor %}
       </div>
     </div>
   </section>
