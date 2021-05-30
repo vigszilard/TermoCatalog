@@ -1,5 +1,9 @@
 /* General */
 
+html { 
+  scroll-behavior: smooth; 
+} 
+
 body {
     background-color: #F5F9FF;
     color: #404756;
@@ -27,6 +31,14 @@ body > section:first-of-type {
 
 body > section:last-of-type {
   padding-bottom: 3rem;
+}
+
+div.container {
+  padding: 0 !important;
+}
+
+div.row {
+  margin: 0 !important;
 }
 
 .success-message {
@@ -173,8 +185,6 @@ body > section:last-of-type {
 }
 
 #categories .card-img-top {
-  width: 100%;
-  height: 15vw;
   object-fit: cover;
 }
 
@@ -246,14 +256,13 @@ body > section:last-of-type {
 }
 
 #about ol > li::before {
-  content: counter(item);
+  content: '['counter(item)']';
   counter-increment: item;
-  background-color: #1378CE;
-  color: #F5F9FF;
+  color: #1378CE;
   text-align: center;
-  border-radius: 100%;;
-  width: 1.2rem;
   float: left;
+  padding-right: 0.5rem;
+  font-weight: 900;
 }
 
 #about h3, #about h4, #about h5, #about h6 {
@@ -379,10 +388,6 @@ body > section:last-of-type {
   background-color: transparent;
 }
 
-#gallery .carousel-inner {
-  border: 1px #1378CE;
-}
-
 #gallery .carousel-item .gallery-img {
   background-size: contain;
   background-position: center center;
@@ -423,7 +428,89 @@ body > section:last-of-type {
   width: 3rem;
 }
 
-#gallery #carousel-thumb {
-  border: 1px solid rgba(0, 0, 0, .125);
-  border-radius: .25rem;
+#gallery .carousel-indicators {
+  padding: 0;
+}
+
+#products .card {
+  position: relative;
+}
+
+#products .card-img-top {
+  object-fit: cover;
+}
+
+#products .card-title {
+  background-color: #1378CE;
+  color: #F5F9FF;
+  opacity: 60%;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  margin: 0;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#products a:hover .card-title {
+  background-color: #1378CE;
+  opacity: 100%;
+}
+
+#category-info .card {
+  background-color: #1378CE;
+  border: none;
+  border-radius: 0;
+  color: #F5F9FF;
+  font-size: 20px;
+}
+
+#category-info iframe {
+  height: 18rem;
+  width: 100%;
+}
+
+#category-info #read-more, #category-info #read-less {
+  background-color: #F5F9FF;
+  opacity: 70%;
+  font-size: 20px;
+  margin-top: -2rem;
+  font-weight: 700;
+}
+
+#category-info #read-more-button p, #category-info #read-less-button p {
+  margin: 0;
+}
+
+#category-info #external-link {
+  color: #F5F9FF;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+#category-info {
+  counter-reset: item;
+}
+
+#category-info ul, #category-info ol {
+  list-style: none;
+}
+
+#category-info ul > li::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: '\f054';
+  color: #F5F9FF;
+  display: inline-block;
+  padding-right: 0.5rem;
+}
+
+#category-info ol > li::before {
+  content: '['counter(item)']';
+  counter-increment: item;
+  color: #F5F9FF;
+  text-align: center;
+  float: left;
+  padding-right: 0.5rem;
+  font-weight: 900;
 }

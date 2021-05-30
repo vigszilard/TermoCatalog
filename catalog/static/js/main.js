@@ -23,6 +23,28 @@ $(document).ready(function() {
   }, function() {
     $(this).removeClass('shadow-lg');
   });
+
+  // add shadow to products on hover
+  $("#products .card" ).hover(function() {
+    $(this).addClass('shadow-lg').css('cursor', 'pointer'); 
+  }, function() {
+    $(this).removeClass('shadow-lg');
+  });
+
+  // show/hide description containers
+  $("#read-more-button").click(function(){      
+    $("#read-more").hide();
+    $("#description-less").hide(); 
+    $("#description-more").show();
+    $("#read-less").show();                            
+  });
+  $("#read-less-button").click(function(){      
+    $("#read-less").hide();
+    $("#description-more").hide(); 
+    $("#description-less").show();
+    $("#read-more").show();                            
+  });
+  
 });
 
 // make sticky header smaller when customer scrolls the page down
@@ -68,3 +90,14 @@ $('.owl-carousel.partners').owlCarousel({
     }
   }
 });
+
+//rearrange gallery thumbnails container if it has a scrollbar displayed
+if (document.getElementById('carousel-thumbnails') != null) {
+    var div = document.getElementById('carousel-thumbnails');
+    var hasHorizontalScrollbar = div.scrollWidth > div.clientWidth;
+    if (hasHorizontalScrollbar) {
+        div.style.justifyContent = 'start';
+    } else {
+        div.style.justifyContent = 'center';
+    }
+}

@@ -10,64 +10,15 @@
     {% include 'components/_header.html' %}
   {% endblock %}
 
-  <section id="gallery">
+  <section id="products">
     <div class="container">
       <h3 class="text-center">{{ category.name }}</h3>
       <h4 class="text-center mb-5">Seturi uzuale</h4>
     </div>
     <div class="container">
-      {% if gallery %}
-        <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
-          <div class="carousel-outer">
-            <div class="carousel-inner" role="listbox">
-              {% for img in gallery %}
-                {% if forloop.first %}
-                  <div class="carousel-item active">
-                    <a href="{{ img.photo.url }}" data-lightbox="home-images">
-                      <div class="gallery-img" style="background-image: url('{{ img.photo.url }}')"></div>
-                    </a>
-                  </div>
-                {% else %}
-                  <div class="carousel-item">
-                    <a href="{{ img.photo.url }}" data-lightbox="home-images">
-                      <div class="gallery-img" style="background-image: url('{{ img.photo.url }}')"></div>
-                    </a>
-                  </div>
-                {% endif %}
-              {% endfor %}
-            </div>
-            <a class="carousel-control-prev" href="#carousel-thumb" role="button" data-slide="prev">
-              <i class="fas fa-chevron-left"></i>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carousel-thumb" role="button" data-slide="next">
-              <i class="fas fa-chevron-right"></i>
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
-          <ol class="carousel-indicators" >
-            {% for img in gallery %}
-              {% if forloop.first %}
-                <li data-target="#carousel-thumb" data-slide-to="{{ forloop.counter0 }}" class="active">
-                  <div class="gallery-thumbnail" style="background-image: url('{{ img.photo.url }}')"></div>
-                </li>
-              {% else %}
-                <li data-target="#carousel-thumb" data-slide-to="{{ forloop.counter0 }}">
-                  <div class="gallery-thumbnail" style="background-image: url('{{ img.photo.url }}')"></div>
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ol>
-        </div>
-      {% endif %}
-    </div>
-  </section>
-
-  <section id="products">
-    <div class="container">
       <div class="row">
         {% for product in products %}
-          <div class="col-md-6 col-lg-4 mb-4">
+          <div class="col-md-4 col-lg-3 mb-4 col-sm-6 d-flex align-items-stretch h-100">
             <a href="{% url 'product' product.id %}">
               <div class="card rounded">
                 <img class="card-img-top rounded" src="{{ product.display_img.url }}" alt="">
@@ -80,32 +31,103 @@
     </div>
   </section>
 
-  <section id="category-description">
-    <div class="container justify-content-center">
-      {% if category.description %}
-        <p>{{ category.description | safe }}</p>
+  <section id="gallery">
+    <hr>
+    <div class="container">
+      {% if gallery %}
+      <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
+        <br>
+        <div class="carousel-outer">
+          <div class="carousel-inner" role="listbox">
+            {% for img in gallery %}
+              {% if forloop.first %}
+                <div class="carousel-item active">
+                  <a href="{{ img.photo.url }}" data-lightbox="home-images">
+                    <div class="gallery-img" style="background-image: url('{{ img.photo.url }}')"></div>
+                  </a>
+                </div>
+              {% else %}
+                <div class="carousel-item">
+                  <a href="{{ img.photo.url }}" data-lightbox="home-images">
+                    <div class="gallery-img" style="background-image: url('{{ img.photo.url }}')"></div>
+                  </a>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <a class="carousel-control-prev" href="#carousel-thumb" role="button" data-slide="prev">
+            <i class="fas fa-chevron-left"></i>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carousel-thumb" role="button" data-slide="next">
+            <i class="fas fa-chevron-right"></i>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <ol class="carousel-indicators" id="carousel-thumbnails">
+          {% for img in gallery %}
+            {% if forloop.first %}
+              <li data-target="#carousel-thumb" data-slide-to="{{ forloop.counter0 }}" class="active">
+                <div class="gallery-thumbnail" style="background-image: url('{{ img.photo.url }}')"></div>
+              </li>
+            {% else %}
+              <li data-target="#carousel-thumb" data-slide-to="{{ forloop.counter0 }}">
+                <div class="gallery-thumbnail" style="background-image: url('{{ img.photo.url }}')"></div>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ol>
+      </div>
       {% endif %}
     </div>
   </section>
 
-  <!-- <section id="category-youtube-link">
+  <section id="category-info">
+    <hr>
     <div class="container justify-content-center">
-      {% if category.youtube_link %}
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{category.youtube_link|cut:'https://www.youtube.com/watch?v='}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      {% endif %}
-    </div>
-  </section> -->
-
-  <section id="category-external-link">
-    <div class="container justify-content-center">
-      {% if category.external_link %}
-        <a href="{{ category.external_link }}" target="_blank" rel="noopener noreferrer">Resurse externe</a>
-      {% endif %}
+      <div class="row shadow" id="description-less">
+        {% if category.youtube_link %}
+          <div class="col-md-6 card-body card rounded-left">
+            <p>{{ category.description | safe | truncatewords:50 }}</p>
+          </div>
+          <div class="col-md-6 card-body card rounded-right">
+            <iframe src="https://www.youtube.com/embed/{{category.youtube_link|cut:'https://www.youtube.com/watch?v='}}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+          </div>
+        {% else %}
+        <div class="col-md-12 card-body card rounded">
+          <p>{{ category.description | safe | truncatewords:100 }}</p>
+        </div>
+        {% endif %}
+      </div>
+      <div class="text-center" id="read-more">
+        <a href="#description-more" id="read-more-button">
+          <p>Afișați mai mult</p>
+          <i class="fas fa-chevron-down"></i>
+        </a>
+      </div>
+      <div class="card card-body shadow rounded" id="description-more" style="display: none;">
+        <p>{{ category.description | safe }}</p>
+        {% if category.youtube_link %}
+          <iframe src="https://www.youtube.com/embed/{{category.youtube_link|cut:'https://www.youtube.com/watch?v='}}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+        {% endif %}
+        {% if category.external_link %}
+          <p>Dacă doriți să aflați mai multe despre accesorille folosite, click
+            <a id="external-link" href="{{ category.external_link }}" target="_blank" rel="noopener noreferrer">aici</a>
+          </p>
+        {% endif %}
+        <br>
+      </div>
+      <div class="text-center" id="read-less" style="display: none;">
+        <a href="#description-less" id="read-less-button">
+          <i class="fas fa-chevron-up"></i>
+          <p>Afișați mai puțin</p>
+        </a>
+      </div>
     </div>
   </section>
   
   {% block footer %}
     {% include 'components/_footer.html' %}
   {% endblock %}
-  
+
 {% endblock %}
