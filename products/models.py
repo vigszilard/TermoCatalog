@@ -20,8 +20,7 @@ class Product(models.Model):
     youtube_link = models.CharField(max_length=250, blank=True)
     external_link = models.CharField(max_length=250, blank=True)
 
-    objects = models.Manager()
-    sorted_by_category = ProductManager()
+    objects = ProductManager()
 
     def display_img_preview(self):
         return mark_safe('<img src="{}" width="100" />'.format(self.display_img.url))
