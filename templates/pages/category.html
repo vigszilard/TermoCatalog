@@ -13,7 +13,7 @@
   <section id="products">
     <div class="container">
       <h3 class="text-center">{{ category.name }}</h3>
-      <h4 class="text-center mb-5">Seturi uzuale</h4>
+      <h4 class="text-center mb-5">Produse recomandate</h4>
     </div>
     <div class="container">
       <div class="row">
@@ -111,7 +111,7 @@
           <iframe src="https://www.youtube.com/embed/{{category.youtube_link|cut:'https://www.youtube.com/watch?v='}}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
         {% endif %}
         {% if category.external_link %}
-          <p>Dacă doriți să aflați mai multe despre accesorille folosite, click
+          <p>Pentru a afla mai multe detalii, click
             <a id="external-link" href="{{ category.external_link }}" target="_blank" rel="noopener noreferrer">aici</a>
           </p>
         {% endif %}
