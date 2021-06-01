@@ -182,6 +182,33 @@ div.row {
   color: #F5F9FF;
 }
 
+/* Breadcrumbs */
+
+.breadcrumbs.bottom {
+  padding-top: 3rem;
+  padding-bottom: 0 !important;
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+.breadcrumbs ol li + li {
+  padding-left: 0.5rem;
+}
+
+.breadcrumbs ol li + li::before {
+  display: inline-block;
+  padding-right: 0.5rem;
+  color: #1378CE;
+  content: "|";
+}
+
 /* Categories */
 
 #categories .card {
