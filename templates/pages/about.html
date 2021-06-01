@@ -9,13 +9,7 @@
         {% include 'components/_header.html' %}
     {% endblock %}
 
-    <section id="about">
-        <div class="container content">
-            {{ about_page.content | safe }}
-        </div>
-    </section>
-
-    <section id="breadcrumbs" class="breadcrumbs bottom">
+    <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
           <div class="d-flex justify-content-between align-items-center">
             <ol>
@@ -25,6 +19,12 @@
                 <li>Despre noi</li>
             </ol>
           </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container content">
+            {{ about_page.content | safe }}
         </div>
     </section>
 
