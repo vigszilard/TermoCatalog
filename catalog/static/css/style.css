@@ -1,7 +1,9 @@
 /* General */
 
 html { 
-  scroll-behavior: smooth; 
+  scroll-behavior: smooth;
+  height: 100%;
+  width: 100%;
 } 
 
 body {
@@ -9,6 +11,9 @@ body {
     color: #404756;
     font-family: 'Open Sans';
     padding-top: 5.5rem;
+    display: flex;
+    flex-flow: column;
+    min-height: 100%;
 }
 
 a {
@@ -31,10 +36,6 @@ body > section:first-of-type {
 
 body > section:last-of-type {
   padding-bottom: 3rem;
-}
-
-div.container {
-  padding: 0 !important;
 }
 
 div.row {
@@ -133,6 +134,9 @@ div.row {
 
 #main-footer {
   box-sizing: border-box;
+  width: 100%;
+  bottom: 0;
+  margin-top: auto;
 }
 
 #navigation img {
@@ -285,7 +289,6 @@ div.row {
   height: 400px;
   width: 100%;
 }
-
 
 .contactForm-body {
   width: 80%;
