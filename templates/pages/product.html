@@ -10,9 +10,22 @@
   {% include 'components/_header.html' %}
 {% endblock %}
 
-<div class="col-md12 my-4 container">
-  <span>{{ product.category }} > {{ product.name }}</span>
-</div>
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <h3>{{ product.name }}</h3>
+      <ol>
+        <li>
+            <a href="{% url 'index' %}">Pagina principală</a>
+        </li>
+        <li>
+          <a href="{% url 'category' product.category_id %}">{{ product.category }}</a>
+        </li>
+        <li>{{ product.name }}</li>
+      </ol>
+    </div>
+  </div>
+</section>
 
 <div class="col-md-12 my-4 text-center">
   <img src="{{ product.display_img.url }}" alt="" height="400px">
