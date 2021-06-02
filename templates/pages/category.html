@@ -25,8 +25,8 @@
   </section>
 
   <section id="products">
-    <div class="container">
-      <h4 class="text-center mb-5">Produse recomandate</h4>
+    <div class="container text-center hidden-title">
+      <h4>Produse recomandate</h4>
     </div>
     <div class="container">
       <div class="row">
@@ -46,10 +46,12 @@
 
   <section id="gallery">
     <hr>
+    <div class="container text-center hidden-title">
+      <h4>Galerie foto</h4>
+    </div>
     <div class="container">
       {% if gallery %}
       <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
-        <br>
         <div class="carousel-outer">
           <div class="carousel-inner" role="listbox">
             {% for img in gallery %}
@@ -97,6 +99,9 @@
 
   <section id="category-info">
     <hr>
+    <div class="container text-center hidden-title">
+      <h4>Specificații tehnice</h4>
+    </div>
     <div class="container justify-content-center">
       <div class="row shadow" id="description-less">
         {% if category.youtube_link %}
@@ -121,7 +126,7 @@
       <div class="card card-body shadow rounded" id="description-more" style="display: none;">
         <p>{{ category.description | safe }}</p>
         {% if category.youtube_link %}
-          <iframe src="https://www.youtube.com/embed/{{category.youtube_link|cut:'https://www.youtube.com/watch?v='}}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/{{ category.youtube_link | cut:'https://www.youtube.com/watch?v=' }}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
         {% endif %}
         {% if category.external_link %}
           <p>Pentru a afla mai multe detalii, click
