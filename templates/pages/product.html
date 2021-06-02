@@ -6,47 +6,58 @@
 
 {% block content %}
 
-{% block header %}
-  {% include 'components/_header.html' %}
-{% endblock %}
+  {% block header %}
+    {% include 'components/_header.html' %}
+  {% endblock %}
 
-<section id="breadcrumbs" class="breadcrumbs">
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-center">
-      <h3>{{ product.name }}</h3>
-      <ol>
-        <li>
-            <a href="{% url 'index' %}">Pagina principală</a>
-        </li>
-        <li>
-          <a href="{% url 'category' product.category_id %}">{{ product.category }}</a>
-        </li>
-        <li>{{ product.name }}</li>
-      </ol>
+  <section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <h3>{{ product.name }}</h3>
+        <ol>
+          <li>
+              <a href="{% url 'index' %}">Pagina principală</a>
+          </li>
+          <li>
+            <a href="{% url 'category' product.category_id %}">{{ product.category }}</a>
+          </li>
+          <li>{{ product.name }}</li>
+        </ol>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="col-md-12 my-4 text-center">
-  <img src="{{ product.display_img.url }}" alt="" height="400px">
-</div>
+  <section id="product-image">
+    <div class="container text-center hidden-title">
+      <h4>Desen tehnic</h4>
+    </div>
+    <div class="container text-center">
+      <img src="{{ product.display_img.url }}" alt="{{ product.display_img }}" height="400px">
+    </div>
+  </section>
 
-<div class="col-md12 my-4">
-  <div class="container"> {{ product.description | safe }}</div>
-</div>
-
-{% if product.youtube_link %}
-  <div class="col-md12 my-4 text-center">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{category.youtube_link|cut:'https://www.youtube.com/watch?v='}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <section id="product-info">
     <hr>
-  </div>
-{% endif %}
+    <div class="container text-center hidden-title">
+      <h4>Specificații tehnice</h4>
+    </div>
+    <div class="container justify-content-center">
+      <div class="card card-body rounded shadow">
+        <p>{{ product.description | safe }}</p>
+        {% if product.youtube_link %}
+          <iframe src="https://www.youtube.com/embed/{{ product.youtube_link | cut:'https://www.youtube.com/watch?v=' }}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+        {% endif %}
+        {% if product.external_link %}
+          <p>Pentru a afla mai multe detalii, click
+            <a id="external-link" href="{{ product.external_link }}" target="_blank" rel="noopener noreferrer">aici</a>
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </section>
 
-{% if product.external_link %}
-  <div class="col-md12 my-4 text-center">
-    <a href="{{ product.external_link }}" target="_blank" rel="noopener noreferrer">Resurse externe</a>
-    <hr>
-  </div>
-{% endif %}
+  {% block footer %}
+    {% include 'components/_footer.html' %}
+  {% endblock %}
 
 {% endblock %}
