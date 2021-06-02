@@ -91,34 +91,49 @@ div.row {
   height: 3rem !important;
 }
 
-.nav-menu ul {
+.navbar ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.nav-menu > ul {
+.navbar > ul {
   display: flex;
 }
 
-.nav-menu > ul > li {
+.navbar > ul > li {
   position: relative;
   white-space: nowrap;
   text-align: center;
 }
 
-.nav-menu a {
+.navbar a {
   display: block;
   position: relative;
   color: #F5F9FF;
   transition: 0.3s;
 }
 
-.nav-menu a:hover, .nav-menu li:hover > a {
+.navbar a:hover, .navbar li:hover > a {
   color: #A4ABBD;
 }
-.nav-menu .active > a {
+
+.navbar .active > a {
     font-weight: bold;
+}
+
+.navbar-dark .navbar-toggler {
+  color: #F5F9FF;
+  border-color: #F5F9FF;
+}
+
+.navbar-toggler, .navbar-toggler-icon, .navbar-toggler:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+.navbar-toggler:hover > span, .navbar-dark .navbar-toggler:hover > span {
+  color: #A4ABBD;
 }
 
 .social i {
@@ -184,9 +199,8 @@ div.row {
 
 /* Breadcrumbs */
 
-.breadcrumbs.bottom {
-  padding-top: 3rem;
-  padding-bottom: 0 !important;
+.breadcrumbs {
+  padding-bottom: 3rem;
 }
 
 .breadcrumbs ol {
@@ -207,6 +221,22 @@ div.row {
   padding-right: 0.5rem;
   color: #1378CE;
   content: "|";
+}
+
+@media (max-width: 768px) {
+
+  .breadcrumbs .d-flex {
+    display: block !important;
+  }
+
+  .breadcrumbs ol {
+    display: block;
+  }
+
+  .breadcrumbs ol li {
+    display: inline-block;
+  }
+
 }
 
 /* Categories */
@@ -358,10 +388,8 @@ div.row {
 #accordion .card, #accordion .card-header {
   background-color: #F5F9FF;
   border: 0;
-}
-
-#accordion hr {
-  margin: 0.5rem;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 #accordion button {

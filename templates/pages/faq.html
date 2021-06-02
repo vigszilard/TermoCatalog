@@ -15,6 +15,7 @@
     <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
           <div class="d-flex justify-content-between align-items-center">
+            <h3>Întrebări frecvente</h3>
             <ol>
                 <li>
                     <a href="{% url 'index' %}">Pagina principală</a>
@@ -26,9 +27,6 @@
     </section>
 
     <section id="faq">
-        <div class="container">
-            <h3 class="text-center mb-5">Întrebări frecvente</h3>
-        </div>
         <div id="accordion" class="container">
             {% if faqs %}
                 {% for faq in faqs %}
