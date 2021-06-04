@@ -162,3 +162,8 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = 'svc@termototal.ro'
 EMAIL_HOST_PASSWORD = '0pXNQ1BxQbOW'
 EMAIL_USE_SSL = True
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
