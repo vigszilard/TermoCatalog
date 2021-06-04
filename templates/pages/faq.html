@@ -8,10 +8,6 @@
 
 {% block content %}
 
-    {% block header %}
-        {% include 'components/_header.html' %}
-    {% endblock %}
-
     <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
           <div class="d-flex justify-content-between align-items-center">
@@ -25,7 +21,6 @@
           </div>
         </div>
     </section>
-
     <section id="faq">
         <div id="accordion" class="container">
             {% if faqs %}
@@ -47,9 +42,5 @@
             {% endif %}
         </div>
     </section>
-
-    {% block footer %}
-        {% include 'components/_footer.html' %}
-    {% endblock %}
 
 {% endblock %}

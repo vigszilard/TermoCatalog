@@ -6,10 +6,6 @@
 
 {% block content %}
 
-  {% block header %}
-    {% include 'components/_header.html' %}
-  {% endblock %}
-
   <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
       <div class="d-flex justify-content-between align-items-center">
@@ -23,18 +19,17 @@
       </div>
     </div>
   </section>
-
   <section id="products">
-    <div class="container text-center hidden-title">
+    <div class="container text-center">
       <h4>Produse recomandate</h4>
     </div>
     <div class="container">
       <div class="row">
         {% for product in products %}
-          <div class="col-md-4 col-lg-3 mb-4 col-sm-6 d-flex align-items-stretch h-100">
+          <div class="col-md-4 col-lg-3 col-6 d-flex align-items-stretch product-container">
             <a href="{% url 'product' product.id %}">
-              <div class="card rounded">
-                <img class="card-img-top rounded" src="{{ product.display_img.url }}" alt="">
+              <div class="card rounded h-100">
+                <img class="card-img-top rounded h-100" src="{{ product.display_img.url }}" alt="">
                 <span class="card-title rounded-bottom text-center py-2">{{ product.name }}</span>
               </div>
             </a>
@@ -43,12 +38,8 @@
       </div>
     </div>
   </section>
-
   <section id="gallery">
     <hr>
-    <div class="container text-center hidden-title">
-      <h4>Galerie foto</h4>
-    </div>
     <div class="container">
       {% if gallery %}
       <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
@@ -96,12 +87,8 @@
       {% endif %}
     </div>
   </section>
-
   <section id="category-info">
     <hr>
-    <div class="container text-center hidden-title">
-      <h4>Specificații tehnice</h4>
-    </div>
     <div class="container justify-content-center">
       <div class="row shadow" id="description-less">
         {% if category.youtube_link %}
@@ -143,9 +130,5 @@
       </div>
     </div>
   </section>
-
-  {% block footer %}
-    {% include 'components/_footer.html' %}
-  {% endblock %}
 
 {% endblock %}
