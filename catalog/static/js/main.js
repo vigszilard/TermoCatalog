@@ -1,7 +1,6 @@
 $(document).ready(function() {
-  console.log("document is ready");
 
-  // change icon logo depending on theme preference (dark/light mode)
+  // Project - change icon logo depending on theme preference (dark/light mode)
   if (!window.matchMedia)
       return;
   var current = $('head > link[rel="icon"][media]');
@@ -17,21 +16,21 @@ $(document).ready(function() {
     swap();
   });
    
-  // add shadow to categories on hover
+  // Category page - add shadow to cards on hover
   $("#categories .card" ).hover(function() {
     $(this).addClass('shadow-lg').css('cursor', 'pointer'); 
   }, function() {
     $(this).removeClass('shadow-lg');
   });
 
-  // add shadow to products on hover
+  // Product page - add shadow to cards on hover
   $("#products .card" ).hover(function() {
     $(this).addClass('shadow-lg').css('cursor', 'pointer'); 
   }, function() {
     $(this).removeClass('shadow-lg');
   });
 
-  // show/hide description containers
+  // Category page - show/hide description containers
   $("#read-more-button").click(function(){      
     $("#read-more").hide();
     $("#description-less").hide(); 
@@ -47,8 +46,8 @@ $(document).ready(function() {
   
 });
 
-// make sticky header smaller when customer scrolls the page down
-$(window).scroll(function() {
+// Header - make sticky smaller on scroll
+$(window).on('scroll', function() {
   if ($(this).scrollTop() > 250){  
       $('#top-bar').addClass("sticky");
   } else{
@@ -56,13 +55,13 @@ $(window).scroll(function() {
   }
 });
 
-// add dynamic year
+// Footer - add dynamic year
 const date = new Date();
 document.querySelector('span.year').innerHTML = date.getFullYear();
 
-//fetch google maps
-let map;
+// Contact page - fetch google maps
 function initMap() {
+  let map;
   if (document.getElementById("googleMap") != null) {
     map = new google.maps.Map(document.getElementById("googleMap"), {
       center: { lat: 47.02124873693511, lng: 23.87716751017298 },
@@ -71,7 +70,7 @@ function initMap() {
   }
 }
 
-//Owl carousel
+// About page - owl carousel
 $('.owl-carousel.partners').owlCarousel({
   loop:true,
   nav:false,
@@ -91,13 +90,15 @@ $('.owl-carousel.partners').owlCarousel({
   }
 });
 
-//rearrange gallery thumbnails container if it has a scrollbar displayed
-if (document.getElementById('carousel-thumbnails') != null) {
+// Category page - rearrange gallery thumbnails container if it has a scrollbar displayed
+$(window).on('resize', function() {
+  if (document.getElementById('carousel-thumbnails') != null) {
     var div = document.getElementById('carousel-thumbnails');
     var hasHorizontalScrollbar = div.scrollWidth > div.clientWidth;
     if (hasHorizontalScrollbar) {
-        div.style.justifyContent = 'start';
+      div.style.justifyContent = 'start';
     } else {
-        div.style.justifyContent = 'center';
+      div.style.justifyContent = 'center';
     }
-}
+  }
+}).resize();
