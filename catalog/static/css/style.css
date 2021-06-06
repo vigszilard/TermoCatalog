@@ -609,6 +609,10 @@ body > section:last-of-type {
 
 /* Product page */
 
+#product-image img {
+  max-height: 400px;
+}
+
 #product-info .card {
   background-color: #1378CE;
   border: none;
