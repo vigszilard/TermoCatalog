@@ -74,6 +74,10 @@ body > section:last-of-type {
     font-size: 1.25rem;
 }
 
+#top-bar .container {
+  padding: 0;
+}
+
 #top-bar img {
     margin-top: 0.5rem;
     height: 5rem;
@@ -87,25 +91,11 @@ body > section:last-of-type {
   height: 3rem !important;
 }
 
-.navbar ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.navbar > ul {
-  display: flex;
-}
-
-.navbar > ul > li {
-  position: relative;
-  white-space: nowrap;
-  text-align: center;
+.navbar .nav-item {
+  padding: .5rem .5rem;
 }
 
 .navbar a {
-  display: block;
-  position: relative;
   color: #F5F9FF;
   transition: 0.3s;
 }
@@ -129,12 +119,35 @@ body > section:last-of-type {
 }
 
 .navbar-toggler:hover > span, .navbar-dark .navbar-toggler:hover > span {
-  color: #A4ABBD;
+  color: #F5F9FF;
+}
+
+.navbar-toggler[aria-expanded=false] .navbar-toggler-close {
+  display: none;
+}
+
+.navbar-toggler[aria-expanded=true] .navbar-toggler-close {
+  display: block;
+}
+
+.navbar-toggler[aria-expanded=true] .navbar-toggler-icon {
+  display: none;
+}
+
+.navbar-collapse hr {
+  display: none;
+}
+
+.navbar-collapse.show hr {
+  display: block;
+  background-color: #F5F9FF;
+  width: -webkit-fill-available;
+  margin-left: 0.5rem;
 }
 
 .social i {
-    color: #F5F9FF;
-    padding: 10px 0 10px 10px;
+  color: #F5F9FF;
+  padding: .5rem .5rem;
 }
 
 .social a:hover, .social a:hover > i {
