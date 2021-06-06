@@ -20,8 +20,14 @@
         </div>
     </section>
     <section id="about">
-        <div class="container content">
-            {{ about_page.content | safe }}
+        <div class="container">
+            <div class="photos">
+                <img src="{{ about_page.photo_1.url }}" alt="{{ about_page.photo_1 }}">
+                <img src="{{ about_page.photo_2.url }}" alt="{{ about_page.photo_2 }}">
+            </div>
+            <div class="content">
+                {{ about_page.content | safe }}
+            </div>
         </div>
     </section>
 
