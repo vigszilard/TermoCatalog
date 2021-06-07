@@ -96,7 +96,9 @@
             <p>{{ category.description | safe | truncatewords:50 }}</p>
           </div>
           <div class="col-md-6 card-body card rounded-right">
-            <iframe src="https://www.youtube.com/embed/{{category.youtube_link|cut:'https://www.youtube.com/watch?v='}}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ category.youtube_link|cut:'https://www.youtube.com/watch?v=' }}" title="YouTube video player" allowfullscreen></iframe>
+            </div>
           </div>
         {% else %}
         <div class="col-md-12 card-body card rounded">
@@ -113,7 +115,9 @@
       <div class="card card-body shadow rounded" id="description-more" style="display: none;">
         <p>{{ category.description | safe }}</p>
         {% if category.youtube_link %}
-          <iframe src="https://www.youtube.com/embed/{{ category.youtube_link | cut:'https://www.youtube.com/watch?v=' }}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+          <div class="embed-responsive embed-responsive-21by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ category.youtube_link | cut:'https://www.youtube.com/watch?v=' }}" title="YouTube video player" allowfullscreen></iframe>
+          </div>
         {% endif %}
         {% if category.external_link %}
           <p>Pentru a afla mai multe detalii, click
