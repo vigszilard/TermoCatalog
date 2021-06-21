@@ -138,11 +138,15 @@ body > section:last-of-type {
   display: none;
 }
 
-.navbar-collapse.show hr {
+.navbar-toggler[aria-expanded=true] + .navbar-collapse hr {
   display: block;
   background-color: #F5F9FF;
   width: -webkit-fill-available;
   margin-left: 0.5rem;
+}
+
+.nav-item a {
+  display: block;
 }
 
 .social i {
@@ -611,6 +615,19 @@ body > section:last-of-type {
 
 #product-image img {
   max-height: 400px;
+  max-width: 100%;
+}
+
+#get-offer button {
+  color: #F5F9FF;
+  background-color: #1378CE;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+#get-offer button:hover {
+  background-color: #A4ABBD;
+  color: #F5F9FF;
 }
 
 #product-info .card {
@@ -652,4 +669,38 @@ body > section:last-of-type {
   float: left;
   padding-right: 0.5rem;
   font-weight: 900;
+}
+
+/* Get offer modal */
+
+.getOfferForm-body .form-outline {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+  justify-content: center;
+}
+
+.getOfferForm-body i {
+  color: #1378CE; 
+  font-size: 1.25rem; 
+  padding-right: 0.5rem;
+  vertical-align: text-bottom;
+}
+
+.getOfferForm-body input, #offer-modal textarea {
+  width: 90%; 
+  border-color: #1378CE;
+  vertical-align: middle;
+}
+
+.getOfferForm-footer button {
+  color: #F5F9FF;
+  background-color: #1378CE;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.getOfferForm-footer button:hover {
+  background-color: #A4ABBD;
+  color: #F5F9FF;
 }

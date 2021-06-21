@@ -1,0 +1,52 @@
+{% block offerModal %}
+    <section id="offer-modal">
+        <div class="modal fade" id="getOfferModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content about">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">Cere ofertă de preț</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form class="form-group align-items-center py-3" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="getOfferForm-body mx-auto form-container">
+                            <div class="form-outline">
+                                <i class="far fa-user"></i>
+                                <input type="text" id="getOfferForm-name" name="name" class="form-control validate" placeholder="Nume, Prenume *" required />
+                                <label class="form-label" data-error="wrong" data-success="right" for="getOfferForm-name"></label>
+                            </div>
+                            <div class="form-outline">
+                                <i class="far fa-envelope"></i>
+                                <input type="email" id="getOfferForm-email" name="email" class="form-control validate" placeholder="E-mail *" required />
+                                <label class="form-label" data-error="wrong" data-success="right" for="getOfferForm-email"></label>
+                            </div>
+                            <div class="form-outline">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="getOfferForm-phone" name="phone" class="form-control validate" placeholder="Telefon *" required>
+                                <label class="form-label" data-error="wrong" data-success="right" for="getOfferForm-phone"></label>
+                            </div>
+                            <div class="form-outline">
+                                <i class="fas fa-building"></i>
+                                <input type="text" id="getOfferForm-city" name="city" class="form-control validate" placeholder="Oraș *" required>
+                                <label class="form-label" data-error="wrong" data-success="right" for="getOfferForm-city"></label>
+                            </div>
+                            <div class="form-outline">
+                                <i class="far fa-comment-dots"></i>                       
+                                <textarea type="text" name="message" id="getOfferForm-message" class="form-control validate" placeholder="Mesajul tău... "></textarea>
+                                <label class="form-label" data-error="wrong" data-success="right" for="getOfferForm-message"></label>
+                            </div>
+                            <div class="form-outline">
+                                <input type="hidden" name="product" value="{{ product.id }}" id="getOfferForm-product" class="form-control validate"></input>
+                            </div>
+                        </div>
+                        <div class="getOfferForm-footer d-flex justify-content-center content">
+                            <button class="btn btn-submit" type="submit">Trimite</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
