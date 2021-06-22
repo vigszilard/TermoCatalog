@@ -25,6 +25,14 @@
   <section id="product-image">
     <div class="container text-center">
       <img src="{{ product.display_img.url }}" alt="{{ product.display_img }}">
+    </div>                             
+  </section>
+  <section id="get-offer">
+    <hr>
+    <div class="container text-center">
+      <button class="btn btn-submit" data-toggle="modal" data-target="#getOfferModal">
+        Vreau ofertă de preț
+      </button>
     </div>
   </section>
   <section id="product-info">
@@ -47,5 +55,9 @@
       </div>
     </div>
   </section>
+
+  {% block offer %}
+        {% include 'components/_get_offer_modal.html' %}
+  {% endblock %}
 
 {% endblock %}
