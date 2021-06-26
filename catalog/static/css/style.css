@@ -321,15 +321,19 @@ body > section:last-of-type {
   overflow: hidden;
 }
 
-#about .photos {
-  float: left;
-  padding-right: 5rem;
-}
-
 #about img {
   max-width: 400px;
-  padding-top: 0.5rem;
-  display: block;
+  height: auto;
+}
+
+#about img:first-child {
+  float: left;
+  padding-right: 0.5rem;
+}
+
+#about img:last-child {
+  float: right;
+  padding-left: 0.5rem;
 }
 
 #about ul, #about ol {
