@@ -47,6 +47,18 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{% static 'js/main.js' %}" ></script>
+    <script type="text/javascript" src="{% static 'js/okzoom.js' %}" ></script>
     <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxwWYAMvg7JfDUT3fSpvNVLwPPq7U0Jzg&callback=initMap"></script>
+    <script>$(document).ready(function () {
+      $('img.zoom').okzoom({
+          width: 150,
+          height: 150,
+          round: true,
+          background: "#fff",
+          backgroundRepeat: "repeat",
+          shadow: "0 0 5px #000",
+          border: "1px solid black"
+      });
+  }) </script>
   </body>
 </html>
