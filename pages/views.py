@@ -38,7 +38,7 @@ class ContactPageView(TemplateView):
     lon = 23.87796
     poi = ( lat, lon )
     map = folium.Map(location=poi, zoom_start=14, tiles='OpenStreetMap')
-    folium.Marker([lat, lon], tooltip='Termototal', icon=folium.Icon(color='blue')).add_to(map)
+    folium.Marker([lat, lon], tooltip='Termototal', icon=folium.Icon()).add_to(map)
     map = map._repr_html_()
 
     def get_context_data(self, **kwargs):

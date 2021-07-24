@@ -714,3 +714,9 @@ body > section:last-of-type {
   background-color: #A4ABBD;
   color: #F5F9FF;
 }
+
+.awesome-marker i {
+  font-size: 18px;
+  margin-top: 8px;
+  color: #1378ce;
+}
