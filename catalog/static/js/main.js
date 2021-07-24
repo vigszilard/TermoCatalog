@@ -15,40 +15,40 @@ $(document).ready(function() {
     match.addEventListener('change', swap);
     swap();
   });
-   
+
   // Category page - add shadow to cards on hover
   $("#categories .card" ).hover(function() {
-    $(this).addClass('shadow-lg').css('cursor', 'pointer'); 
+    $(this).addClass('shadow-lg').css('cursor', 'pointer');
   }, function() {
     $(this).removeClass('shadow-lg');
   });
 
   // Product page - add shadow to cards on hover
   $("#products .card" ).hover(function() {
-    $(this).addClass('shadow-lg').css('cursor', 'pointer'); 
+    $(this).addClass('shadow-lg').css('cursor', 'pointer');
   }, function() {
     $(this).removeClass('shadow-lg');
   });
 
   // Category page - show/hide description containers
-  $("#read-more-button").click(function(){      
+  $("#read-more-button").click(function(){
     $("#read-more").hide();
-    $("#description-less").hide(); 
+    $("#description-less").hide();
     $("#description-more").show();
-    $("#read-less").show();                            
+    $("#read-less").show();
   });
-  $("#read-less-button").click(function(){      
+  $("#read-less-button").click(function(){
     $("#read-less").hide();
-    $("#description-more").hide(); 
+    $("#description-more").hide();
     $("#description-less").show();
-    $("#read-more").show();                            
+    $("#read-more").show();
   });
-  
+
 });
 
 // Header - make sticky smaller on scroll
 $(window).on('scroll', function() {
-  if ($(this).scrollTop() > 250){  
+  if ($(this).scrollTop() > 250){
       $('#top-bar').addClass("sticky");
   } else{
       $('#top-bar').removeClass("sticky");
@@ -100,5 +100,17 @@ $(window).on('resize', function() {
     } else {
       div.style.justifyContent = 'center';
     }
+  }).resize();
+
+// Product page - get offer - display city input if needed
+$("#getOfferForm-montage, #getOfferForm-transport").click(function () {
+  var montage = document.getElementById("getOfferForm-montage").checked;
+  var transport = document.getElementById("getOfferForm-transport").checked;
+  if (montage || transport) {
+    $(".getOfferForm-body .city").show();
+    $(".getOfferForm-body .city input").attr("required", true);
+  } else if (!(montage || transport)) {
+    $(".getOfferForm-body .city").hide();
+    $(".getOfferForm-body .city input").attr("required", false);
   }
-}).resize();
+});

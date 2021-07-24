@@ -1,7 +1,7 @@
 {% block offerModal %}
     <section id="offer-modal">
         <div class="modal fade" id="getOfferModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content about">
                     <div class="modal-header text-center">
                         <h4 class="modal-title w-100 font-weight-bold">Cere ofertă de preț</h4>
@@ -9,7 +9,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form class="form-group align-items-center py-3" method="POST" enctype="multipart/form-data">
+                    <form class="form-group align-items-center py-3" method="POST" enctype="multipart/form-data" action="{% url 'request_offer' %}">
                         {% csrf_token %}
                         <div class="getOfferForm-body mx-auto form-container">
                             <div class="form-outline">
@@ -28,8 +28,18 @@
                                 <label class="form-label" data-error="wrong" data-success="right" for="getOfferForm-phone"></label>
                             </div>
                             <div class="form-outline">
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" id="getOfferForm-transport" name="transport" class="form-check-input" value="false" aria-label="Doriți transport?">
+                                    <label class="form-check-label" for="getOfferForm-transport">Doriți transport?</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" id="getOfferForm-montage" name="montage" class="form-check-input" value="false" aria-label="Doriți montaj?">
+                                    <label class="form-check-label" for="getOfferForm-montage">Doriți montaj?</label>
+                                </div>
+                            </div>
+                            <div class="form-outline city" style="display: none;">
                                 <i class="fas fa-building"></i>
-                                <input type="text" id="getOfferForm-city" name="city" class="form-control validate" placeholder="Oraș *" required>
+                                <input type="text" id="getOfferForm-city" name="city" class="form-control validate" placeholder="Oraș *">
                                 <label class="form-label" data-error="wrong" data-success="right" for="getOfferForm-city"></label>
                             </div>
                             <div class="form-outline">
@@ -38,7 +48,14 @@
                                 <label class="form-label" data-error="wrong" data-success="right" for="getOfferForm-message"></label>
                             </div>
                             <div class="form-outline">
-                                <input type="hidden" name="product" value="{{ product.id }}" id="getOfferForm-product" class="form-control validate"></input>
+                                <label id="fileHelp" class="form-text text-muted">Aveți deja o schiță/poză ?</label>
+                            </div>
+                            <div class="form-outline">
+                                <i class="far fa-file"></i>                       
+                                <input type="file" name="file" id="getOfferForm-file" class="form-control-file btn"></input>
+                            </div>
+                            <div class="form-outline">
+                                <input type="hidden" name="product" value="{{ product.id }}" id="getOfferForm-product" class="form-control"></input>
                             </div>
                         </div>
                         <div class="getOfferForm-footer d-flex justify-content-center content">
