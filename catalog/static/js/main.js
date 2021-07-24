@@ -59,17 +59,6 @@ $(window).on('scroll', function() {
 const date = new Date();
 document.querySelector('span.year').innerHTML = date.getFullYear();
 
-// Contact page - fetch google maps
-function initMap() {
-  let map;
-  if (document.getElementById("googleMap") != null) {
-    map = new google.maps.Map(document.getElementById("googleMap"), {
-      center: { lat: 47.02124873693511, lng: 23.87716751017298 },
-      zoom: 16,
-    });
-  }
-}
-
 // About page - owl carousel
 $('.owl-carousel.partners').owlCarousel({
   loop:true,
