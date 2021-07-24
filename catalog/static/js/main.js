@@ -89,7 +89,8 @@ $(window).on('resize', function() {
     } else {
       div.style.justifyContent = 'center';
     }
-  }).resize();
+  }
+}).resize();
 
 // Product page - get offer - display city input if needed
 $("#getOfferForm-montage, #getOfferForm-transport").click(function () {
