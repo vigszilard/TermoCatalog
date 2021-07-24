@@ -7,6 +7,7 @@ from django.template import loader
 from pages.models import AboutPage, ContactPage, FAQPage, Partner
 from categories.models import Category 
 from smtplib import SMTPException
+import folium
 
 
 def index(request):
@@ -33,12 +34,19 @@ class AboutPageView(TemplateView):
 
 class ContactPageView(TemplateView):
     template_name = 'pages/contact.html'
+    lat = 47.02036
+    lon = 23.87796
+    poi = ( lat, lon )
+    map = folium.Map(location=poi, zoom_start=14, tiles='OpenStreetMap')
+    folium.Marker([lat, lon], tooltip='Termototal', icon=folium.Icon(color='blue')).add_to(map)
+    map = map._repr_html_()
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of first contactPage template
         context['contact_page'] = ContactPage.objects.first()
+        context['map'] = self.map
         return context
 
 def send_contact_form(request):
