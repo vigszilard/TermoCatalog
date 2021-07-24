@@ -1,10 +1,10 @@
 /* General */
 
-html { 
+html {
   scroll-behavior: smooth;
   height: 100%;
   width: 100%;
-} 
+}
 
 body {
     background-color: #F5F9FF;
@@ -268,7 +268,6 @@ body > section:last-of-type {
   object-fit: cover;
 }
 
-
 #categories .card-title {
   background-color: #1378CE;
   color: #F5F9FF;
@@ -321,15 +320,19 @@ body > section:last-of-type {
   overflow: hidden;
 }
 
-#about .photos {
-  float: left;
-  padding-right: 5rem;
-}
-
 #about img {
   max-width: 400px;
-  padding-top: 0.5rem;
-  display: block;
+  height: auto;
+}
+
+#about img:first-child {
+  float: left;
+  padding-right: 0.5rem;
+}
+
+#about img:last-child {
+  float: right;
+  padding-left: 0.5rem;
 }
 
 #about ul, #about ol {
@@ -392,14 +395,14 @@ body > section:last-of-type {
 }
 
 .contactForm-body i {
-  color: #1378CE; 
-  font-size: 1.25rem; 
+  color: #1378CE;
+  font-size: 1.25rem;
   padding-right: 0.5rem;
   vertical-align: text-bottom;
 }
 
 .contactForm-body input, #contact-form textarea {
-  width: 90%; 
+  width: 90%;
   border-color: #1378CE;
   vertical-align: middle;
 }
@@ -681,15 +684,21 @@ body > section:last-of-type {
   justify-content: center;
 }
 
+.getOfferForm-body input[type="checkbox"] {
+  height: 1.25rem;
+  width: 1.25rem;
+  outline-color: #1378CE;
+}
+
 .getOfferForm-body i {
-  color: #1378CE; 
-  font-size: 1.25rem; 
+  color: #1378CE;
+  font-size: 1.25rem;
   padding-right: 0.5rem;
   vertical-align: text-bottom;
 }
 
 .getOfferForm-body input, #offer-modal textarea {
-  width: 90%; 
+  width: 90%;
   border-color: #1378CE;
   vertical-align: middle;
 }

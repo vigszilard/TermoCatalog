@@ -23,6 +23,21 @@
     </div>
   </section>
   <section id="product-image">
+    {% if messages %}
+      {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="alert error-message" role="alert">
+                <i class="fas fa-times"></i>
+                {{ message }}
+            </div>
+        {% else %}
+            <div class="alert success-message" role="alert">
+                <i class="fas fa-check"></i>
+                {{ message }}
+            </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
     <div class="container text-center">
       <img class="zoom" src="{{ product.display_img.url }}" alt="{{ product.display_img }}">
     </div>                             
