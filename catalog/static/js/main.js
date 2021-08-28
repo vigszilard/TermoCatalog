@@ -93,13 +93,13 @@ $(window).on('resize', function() {
 }).resize();
 
 // Product page - get offer - display city input if needed
-$("#getOfferForm-montage, #getOfferForm-transport").click(function () {
-  var montage = document.getElementById("getOfferForm-montage").checked;
+$("#getOfferForm-assembly, #getOfferForm-transport").click(function () {
+  var assembly = document.getElementById("getOfferForm-assembly").checked;
   var transport = document.getElementById("getOfferForm-transport").checked;
-  if (montage || transport) {
+  if (assembly || transport) {
     $(".getOfferForm-body .city").show();
     $(".getOfferForm-body .city input").attr("required", true);
-  } else if (!(montage || transport)) {
+  } else if (!(assembly || transport)) {
     $(".getOfferForm-body .city").hide();
     $(".getOfferForm-body .city input").attr("required", false);
   }
