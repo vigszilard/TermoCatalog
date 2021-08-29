@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.views.generic import TemplateView
 from django.template import loader
 from pages.models import AboutPage, ContactPage, FAQPage, Partner
-from categories.models import Category 
+from categories.models import Category
 from smtplib import SMTPException
 import folium
 
@@ -53,18 +53,18 @@ def send_contact_form(request):
     if request.method == 'POST':
         subject = "Termototal contact"
         body = {
-            'name' : request.POST['name'],
-            'email' : request.POST['email'],
-            'phone' : request.POST['phone'],
-            'message' : request.POST['message'],
+            'name': request.POST['name'],
+            'email': request.POST['email'],
+            'phone': request.POST['phone'],
+            'message': request.POST['message'],
         }
         html_message = loader.render_to_string(
-            'components/_email_template.html',
+            'contact_us_email.html',
             {
                 'name': body['name'],
                 'email':  body['email'],
                 'phone': body['phone'],
-                'message': body['message'] 
+                'message': body['message']
             }
         )
         message = '\n'.join(body.values())

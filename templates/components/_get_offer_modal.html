@@ -29,12 +29,12 @@
                             </div>
                             <div class="form-outline">
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" id="getOfferForm-transport" name="transport" class="form-check-input" value="false" aria-label="Doriți transport?">
+                                    <input type="checkbox" id="getOfferForm-transport" name="transport" class="form-check-input" aria-label="Doriți transport?">
                                     <label class="form-check-label" for="getOfferForm-transport">Doriți transport?</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" id="getOfferForm-montage" name="montage" class="form-check-input" value="false" aria-label="Doriți montaj?">
-                                    <label class="form-check-label" for="getOfferForm-montage">Doriți montaj?</label>
+                                    <input type="checkbox" id="getOfferForm-assembly" name="assembly" class="form-check-input" aria-label="Doriți montaj?">
+                                    <label class="form-check-label" for="getOfferForm-assembly">Doriți montaj?</label>
                                 </div>
                             </div>
                             <div class="form-outline city" style="display: none;">
@@ -52,10 +52,10 @@
                             </div>
                             <div class="form-outline">
                                 <i class="far fa-file"></i>                       
-                                <input type="file" name="file" id="getOfferForm-file" class="form-control-file btn"></input>
+                                <input type="file" name="file" id="getOfferForm-file" class="form-control-file btn">
                             </div>
                             <div class="form-outline">
-                                <input type="hidden" name="product" value="{{ product.id }}" id="getOfferForm-product" class="form-control"></input>
+                                <input type="hidden" name="product" value="{{ product.id }}" id="getOfferForm-product" class="form-control">
                             </div>
                         </div>
                         <div class="getOfferForm-footer d-flex justify-content-center content">
