@@ -36,12 +36,20 @@ $(document).ready(function() {
     $("#description-less").hide();
     $("#description-more").show();
     $("#read-less").show();
+    if ($("iframe").length !== 0) {
+        var iframe = document.getElementsByClassName("embed-responsive-item")[0].contentWindow;
+        iframe.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    }
   });
   $("#read-less-button").click(function(){
     $("#read-less").hide();
     $("#description-more").hide();
     $("#description-less").show();
     $("#read-more").show();
+    if ($("iframe").length !== 0) {
+        var iframe = document.getElementsByClassName("embed-responsive-item")[1].contentWindow;
+        iframe.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    }
   });
 
 });
