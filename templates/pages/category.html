@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 
+{% load custom_tags %}
+
 {% block title %}
   > {{ category.name }}
 {% endblock %}
 
 {% block content %}
-
   <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
       <div class="d-flex justify-content-between align-items-center">
@@ -97,7 +98,7 @@
           </div>
           <div class="col-md-6 card-body card rounded-right">
             <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ category.youtube_link|cut:'https://www.youtube.com/watch?v=' }}" title="YouTube video player" allowfullscreen></iframe>
+              <iframe class="embed-responsive-item" src="{{ category.youtube_link|construct_youtube_link }}" title="YouTube video player" allowfullscreen></iframe>
             </div>
           </div>
         {% else %}
@@ -116,7 +117,7 @@
         <p>{{ category.description | safe }}</p>
         {% if category.youtube_link %}
           <div class="embed-responsive embed-responsive-21by9">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ category.youtube_link | cut:'https://www.youtube.com/watch?v=' }}" title="YouTube video player" allowfullscreen></iframe>
+            <iframe class="embed-responsive-item" src="{{ category.youtube_link|construct_youtube_link }}" title="YouTube video player" allowfullscreen></iframe>
           </div>
         {% endif %}
         {% if category.external_link %}
@@ -134,5 +135,4 @@
       </div>
     </div>
   </section>
-
 {% endblock %}
