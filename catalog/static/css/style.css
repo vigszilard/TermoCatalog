@@ -486,14 +486,14 @@ body > section:last-of-type {
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat no-repeat;
-  height: 400px;
+  height: 600px;
   width: auto;
   cursor: zoom-in;
 }
 
 @media only screen and (max-width: 500px) {
   .gallery-img{
-      height: 200px!important;
+      height: 300px!important;
   }
 }
 
