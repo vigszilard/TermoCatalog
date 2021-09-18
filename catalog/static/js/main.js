@@ -111,4 +111,9 @@ $("#getOfferForm-assembly, #getOfferForm-transport").click(function () {
     $(".getOfferForm-body .city").hide();
     $(".getOfferForm-body .city input").attr("required", false);
   }
+  if (assembly) {
+    if (!transport) {
+        $("#getOfferForm-transport").prop("checked", true);
+    }
+  }
 });
