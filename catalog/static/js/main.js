@@ -111,6 +111,12 @@ $("#getOfferForm-assembly, #getOfferForm-transport").click(function () {
     $(".getOfferForm-body .city").hide();
     $(".getOfferForm-body .city input").attr("required", false);
   }
+});
+
+// Product page - get offer - check transport if assembly is checked
+$("#getOfferForm-assembly").click(function () {
+  var assembly = document.getElementById("getOfferForm-assembly").checked;
+  var transport = document.getElementById("getOfferForm-transport").checked;
   if (assembly) {
     if (!transport) {
         $("#getOfferForm-transport").prop("checked", true);
