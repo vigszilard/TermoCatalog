@@ -254,35 +254,25 @@ body > section:last-of-type {
 
 /* Categories */
 
-#categories .product-container {
-  max-height: 250px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-
-#categories .card {
-  position: relative;
+#categories .card, #categories .row {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 #categories .card-img-top {
   object-fit: cover;
+  height: 200px;
 }
 
-#categories .card-title {
+#categories .card-body {
   background-color: #1378CE;
   color: #F5F9FF;
-  opacity: 60%;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  margin: 0;
   font-weight: bold;
   font-size: 1.25rem;
 }
 
-#categories a:hover .card-title {
-  background-color: #1378CE;
-  opacity: 100%;
+#categories .card-title {
+  margin-bottom: 0;
 }
 
 /* Partners */
@@ -379,12 +369,8 @@ body > section:last-of-type {
 }
 
 #map {
-  height: 400px;
+  max-height: 400px;
   width: 100%;
-}
-
-.contactForm-body {
-  width: 80%;
 }
 
 .contactForm-body .form-outline {
