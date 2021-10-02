@@ -11,17 +11,21 @@
       <h3 class="text-center mb-5">Categorii produse</h3>
     </div>
     <div class="container">
-      <div class="row">
-        {% for category in categories %}
-        <div class="col-md-4 col-lg-3 col-6 d-flex align-items-stretch product-container">
-          <a href="{% url 'category' category.id %}">
-              <div class="card rounded h-100">
-                <img class="card-img-top rounded h-100" src="{{ category.display_img.url }}" alt="">
-                <span class="card-title rounded-bottom text-center py-2">{{ category.name }}</span>
+      <div class="row justify-content-center">
+        <div class="card-deck">
+          {% for category in categories %}
+              <div class="col-md-4 col-lg-3 col-sm-6 align-items-stretch py-3">
+                <a href="{% url 'category' category.id %}">
+                  <div class="card rounded">
+                    <img class="card-img-top rounded-top" src="{{ category.display_img.url }}" alt="">
+                    <div class="card-body rounded-bottom text-center">
+                      <span class="card-title">{{ category.name }}</span>
+                    </div>
+                  </div>
+                </a>
               </div>
-            </a>
-          </div>
-        {% endfor %}
+          {% endfor %}
+        </div>
       </div>
     </div>
   </section>
