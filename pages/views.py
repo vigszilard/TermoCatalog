@@ -38,7 +38,7 @@ class ContactPageView(TemplateView):
     lon = 23.87796
     poi = ( lat, lon )
     map = folium.Map(location=poi, zoom_start=14, tiles='OpenStreetMap')
-    folium.Marker([lat, lon], tooltip='Termototal', icon=folium.Icon(color='blue')).add_to(map)
+    folium.Marker([lat, lon], tooltip='Termototal', icon=folium.Icon()).add_to(map)
     map = map._repr_html_()
 
     def get_context_data(self, **kwargs):
@@ -68,16 +68,21 @@ def send_contact_form(request):
             }
         )
         message = '\n'.join(body.values())
-        try:
-            send_mail(subject, message, 'svc@termototal.ro', ['proiectare@termototal.ro'], fail_silently=False, html_message=html_message)
-        except BadHeaderError:
-            return HttpResponse('Invalid header found.')
-        except SMTPException as ex:
-            messages.error(request, 'Solicitarea dvs. nu a putut fi trimisă. Vă rugăm să reîncercați.')
-            print("The email could not be sent", ex)
+        get_recaptcha = request.POST.get("g-recaptcha-response")
+        if get_recaptcha:
+            try:
+                send_mail(subject, message, 'svc@termototal.ro', ['proiectare@termototal.ro'], fail_silently=False, html_message=html_message)
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            except SMTPException as ex:
+                messages.error(request, 'Solicitarea dvs. nu a putut fi trimisă. Vă rugăm să reîncercați.')
+                print("The email could not be sent", ex)
+                return redirect("contact")
+            messages.success(request, 'Solicitarea dvs. a fost trimisă cu succes.')
             return redirect("contact")
-        messages.success(request, 'Solicitarea dvs. a fost trimisă cu succes.')
-        return redirect("contact")
+        else:
+            messages.error(request, 'Vă rugăm să completați reCaptcha.')
+            return redirect("contact")
     return render(request, "pages/contact.html")
 
 class FAQPageView(TemplateView):

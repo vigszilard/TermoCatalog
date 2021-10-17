@@ -70,16 +70,21 @@ def send_offer_form(request):
             else:
                 messages.error(request, 'Fișierul atașat nu este acceptat.')
                 return redirect("product", body['product_id'])
-        try:
-            email.send(fail_silently=False)
-            if attachment is not None:
-                os.remove(os.path.join(settings.MEDIA_ROOT + '/' + attachment))
+        get_recaptcha = request.POST.get("g-recaptcha-response")
+        if get_recaptcha:
+            try:
+                email.send(fail_silently=False)
+                if attachment is not None:
+                    os.remove(os.path.join(settings.MEDIA_ROOT + '/' + attachment))
 
-        except BadHeaderError:
-            return HttpResponse('Invalid header found.')
-        except SMTPException:
-            messages.error(request, 'Solicitarea dvs. nu a putut fi trimisă. Vă rugăm să reîncercați.')
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            except SMTPException:
+                messages.error(request, 'Solicitarea dvs. nu a putut fi trimisă. Vă rugăm să reîncercați.')
+                return redirect("product", body['product_id'])
+            messages.success(request, 'Solicitarea dvs. a fost trimisă cu succes.')
             return redirect("product", body['product_id'])
-        messages.success(request, 'Solicitarea dvs. a fost trimisă cu succes.')
-        return redirect("product", body['product_id'])
+        else:
+                messages.error(request, 'Vă rugăm să completați reCaptcha.')
+                return redirect("product", body['product_id'])
     return render(request, "pages/product.html")

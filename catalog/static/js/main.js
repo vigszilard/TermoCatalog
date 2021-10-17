@@ -123,3 +123,8 @@ $("#getOfferForm-assembly").click(function () {
     }
   }
 });
+
+// Enable submit button after solving recaptcha
+function enableSubmitBtn(){
+  document.getElementById("submitButton").disabled = false;
+} 
