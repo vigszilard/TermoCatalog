@@ -57,9 +57,12 @@
                             <div class="form-outline">
                                 <input type="hidden" name="product" value="{{ product.id }}" id="getOfferForm-product" class="form-control">
                             </div>
+                            <div class="form-outline text-center">
+                                <div class="g-recaptcha" data-sitekey="6LfJBtYcAAAAAGg8DDZ-72zIcvUMcEM_Lm7gmVn9" data-callback="enableSubmitBtn"></div>
+                            </div>
                         </div>
                         <div class="getOfferForm-footer d-flex justify-content-center content">
-                            <button class="btn btn-submit" type="submit">Trimite</button>
+                            <button class="btn btn-submit" type="submit" id="submitButton" disabled>Trimite</button>
                         </div>
                     </form>
                 </div>

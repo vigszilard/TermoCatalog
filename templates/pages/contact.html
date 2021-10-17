@@ -124,12 +124,16 @@
                         <textarea type="text" name="message" id="contactForm-message" class="form-control validate" placeholder="Mesajul tău... *" required></textarea>
                         <label class="form-label" data-error="wrong" data-success="right" for="contactForm-message"></label>
                     </div>
+                    <div class="form-outline text-center">
+                        <div class="g-recaptcha" data-sitekey="6LfJBtYcAAAAAGg8DDZ-72zIcvUMcEM_Lm7gmVn9" data-callback="enableSubmitBtn"></div>
+                    </div>
                 </div>
                 <div class="contactForm-footer d-flex justify-content-center content">
-                    <button class="btn btn-submit" type="submit">Trimite</button>
+                    <button class="btn btn-submit" type="submit" id="submitButton" disabled>Trimite</button>
                 </div>
             </form>
         </div>
     </section>
+
 
 {% endblock %}
