@@ -386,6 +386,12 @@ body > section:last-of-type {
   width: 100%;
 }
 
+.awesome-marker i {
+  font-size: 1.25rem !important;
+  margin-top: 8px;
+  color: #1378ce !important;
+}
+
 .contactForm-body .form-outline {
   display: flex;
   align-items: center;
@@ -416,6 +422,10 @@ body > section:last-of-type {
 .contactForm-footer button:hover {
   background-color: #A4ABBD;
   color: #F5F9FF;
+}
+
+.contactForm-footer button[disabled]:hover {
+  cursor: not-allowed;
 }
 
 /* FAQ page */
@@ -666,6 +676,13 @@ body > section:last-of-type {
 
 /* Get offer modal */
 
+#offer-modal .modal-content {
+  background-color: #F5F9FF;
+  color: #404756;
+  font-family: 'Open Sans';
+  font-size: 1rem;
+}
+
 .getOfferForm-body .form-outline {
   display: flex;
   align-items: center;
@@ -708,8 +725,6 @@ body > section:last-of-type {
   color: #F5F9FF;
 }
 
-.awesome-marker i {
-  font-size: 18px;
-  margin-top: 8px;
-  color: #1378ce;
+.getOfferForm-footer button[disabled]:hover {
+  cursor: not-allowed;
 }

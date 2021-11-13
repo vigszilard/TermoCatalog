@@ -41,8 +41,8 @@
                     <div>
                         <label class="label" for="informationCell-address">Adresa</label>
                         <p id="informationCell-address">
-                            Strada {{ contact_page.street_name }} 
-                            {% if contact_page.street_number %} 
+                            Strada {{ contact_page.street_name }}
+                            {% if contact_page.street_number %}
                                 , nr. {{ contact_page.street_number  }}
                             {% endif %}
                             {% if contact_page.unit %}
@@ -121,7 +121,7 @@
                     </div>
                     <div class="form-outline">
                         <i class="far fa-comment-dots"></i>                       
-                        <textarea type="text" name="message" id="contactForm-message" class="form-control validate" placeholder="Mesajul tău... *" required></textarea>
+                        <textarea name="message" id="contactForm-message" class="form-control validate" placeholder="Mesajul tău... *" required></textarea>
                         <label class="form-label" data-error="wrong" data-success="right" for="contactForm-message"></label>
                     </div>
                     <div class="form-outline text-center">
