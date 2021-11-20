@@ -10,6 +10,7 @@ body {
     background-color: #F5F9FF;
     color: #404756;
     font-family: 'Open Sans';
+    font-size: 1rem;
     padding-top: 5.5rem;
     display: flex;
     flex-flow: column;
@@ -84,7 +85,7 @@ body > section:last-of-type {
 }
 
 .sticky {
-  font-size: 14px !important;
+  font-size: 1rem !important;
 }
 
 .sticky img {
@@ -222,7 +223,7 @@ body > section:last-of-type {
   list-style: none;
   padding: 0;
   margin: 0;
-  font-size: 14px;
+  font-size: 1rem;
 }
 
 .breadcrumbs ol li + li {
@@ -250,6 +251,18 @@ body > section:last-of-type {
     display: inline-block;
   }
 
+}
+
+/* Back button */
+
+#back-button {
+  padding-bottom: 3rem;
+  font-size: 1rem;
+}
+
+#back-button i {
+  padding-right: 0.25rem;
+  vertical-align: middle;
 }
 
 /* Categories */
@@ -373,6 +386,12 @@ body > section:last-of-type {
   width: 100%;
 }
 
+.awesome-marker i {
+  font-size: 1.25rem !important;
+  margin-top: 8px;
+  color: #1378ce !important;
+}
+
 .contactForm-body .form-outline {
   display: flex;
   align-items: center;
@@ -403,6 +422,10 @@ body > section:last-of-type {
 .contactForm-footer button:hover {
   background-color: #A4ABBD;
   color: #F5F9FF;
+}
+
+.contactForm-footer button[disabled]:hover {
+  cursor: not-allowed;
 }
 
 /* FAQ page */
@@ -512,35 +535,25 @@ body > section:last-of-type {
   padding: 0;
 }
 
-#products .card {
-  position: relative;
-}
-
-#products .product-container {
-  max-height: 250px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+#products .card, #products .row {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 #products .card-img-top {
-  object-fit: cover;
+  object-fit: contain;
+  height: 200px;
 }
 
-#products .card-title {
+#products .card-body {
   background-color: #1378CE;
   color: #F5F9FF;
-  opacity: 60%;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  margin: 0;
   font-weight: bold;
   font-size: 1.25rem;
 }
 
-#products a:hover .card-title {
-  background-color: #1378CE;
-  opacity: 100%;
+#products .card-title {
+  margin-bottom: 0;
 }
 
 #category-info .card {
@@ -548,7 +561,7 @@ body > section:last-of-type {
   border: none;
   border-radius: 0;
   color: #F5F9FF;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 #category-info .row {
@@ -625,7 +638,7 @@ body > section:last-of-type {
   border: none;
   border-radius: 0;
   color: #F5F9FF;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 #product-info #external-link {
@@ -663,11 +676,22 @@ body > section:last-of-type {
 
 /* Get offer modal */
 
+#offer-modal .modal-content {
+  background-color: #F5F9FF;
+  color: #404756;
+  font-family: 'Open Sans';
+  font-size: 1rem;
+}
+
 .getOfferForm-body .form-outline {
   display: flex;
   align-items: center;
   padding-bottom: 1rem;
   justify-content: center;
+}
+
+#getOfferModal .modal-title {
+  font-size: 1.25rem;
 }
 
 .getOfferForm-body input[type="checkbox"] {
@@ -701,8 +725,6 @@ body > section:last-of-type {
   color: #F5F9FF;
 }
 
-.awesome-marker i {
-  font-size: 18px;
-  margin-top: 8px;
-  color: #1378ce;
+.getOfferForm-footer button[disabled]:hover {
+  cursor: not-allowed;
 }
