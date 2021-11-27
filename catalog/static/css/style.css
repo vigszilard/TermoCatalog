@@ -282,6 +282,7 @@ body > section:last-of-type {
   color: #F5F9FF;
   font-weight: bold;
   font-size: 1.25rem;
+  padding: 0.25rem;
 }
 
 #categories .card-title {
@@ -550,6 +551,7 @@ body > section:last-of-type {
   color: #F5F9FF;
   font-weight: bold;
   font-size: 1.25rem;
+  padding: 0.25rem;
 }
 
 #products .card-title {
