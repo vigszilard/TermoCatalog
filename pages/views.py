@@ -4,7 +4,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.contrib import messages
 from django.views.generic import TemplateView
 from django.template import loader
-from pages.models import AboutPage, ContactPage, FAQPage, Partner
+from pages.models import AboutPage, ContactPage, FAQPage, Partner, DesignsPage
 from categories.models import Category
 from smtplib import SMTPException
 import folium
@@ -93,4 +93,12 @@ class FAQPageView(TemplateView):
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of FAQ template
         context['faqs'] = FAQPage.objects.all()
+        return context
+
+class DesignsPageView(TemplateView):
+    template_name = 'pages/designs.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['designspage'] = DesignsPage.objects.first()
         return context
