@@ -7,6 +7,9 @@ from django.utils.safestring import mark_safe
 def product_dir_path_sb(instance, filename):
     return os.path.join('photos/designs/sandblast', filename)
 
+def product_dir_path_pr(instance, filename):
+    return os.path.join('photos/designs/print', filename)
+
 
 class SandblastManager(models.Manager):
     def get_queryset(self):
