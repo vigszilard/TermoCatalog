@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'admin_reorder',
     'products.apps.ProductsConfig',
+    'designs.apps.DesignsConfig',
     'categories.apps.CategoriesConfig',
     'pages.apps.PagesConfig',
     'django.contrib.admin',
@@ -58,6 +59,7 @@ MIDDLEWARE = [
 ADMIN_REORDER = (
     {'app': 'auth', 'label': 'Authorisation', 'models': ('auth.User', )},
     'pages',
+    'designs',
     'categories',
     'products'
 )

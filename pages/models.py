@@ -65,3 +65,17 @@ class FAQPage(models.Model):
 
     def __str__(self):
         return 'FAQ page details'
+
+class DesignsPage(models.Model):
+    sandblast = ImageField(upload_to='photos/designs/')
+    printing = ImageField(upload_to='photos/designs/')
+    content = RichTextField()
+
+    class Meta:
+        verbose_name_plural = 'designsPage'
+
+    def clean(self):
+        validate_only_one_instance(self)
+
+    def __str__(self):
+        return 'Designs page details'

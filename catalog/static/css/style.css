@@ -730,3 +730,96 @@ body > section:last-of-type {
 .getOfferForm-footer button[disabled]:hover {
   cursor: not-allowed;
 }
+
+
+/* Designs */
+
+#designs .card, #designs .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#designs .card-img-top {
+  object-fit: fill;
+  height: 300px;
+}
+
+#designs .card-body {
+  background-color: #1378CE;
+  color: #F5F9FF;
+  font-weight: bold;
+  font-size: 1.25rem;
+  padding: 0.25rem;
+}
+
+#designs .card-title {
+  margin-bottom: 0;
+}
+
+/* Sandblast */
+
+#sandblasts .card, #sandblasts .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#sandblasts .card-img-top {
+  object-fit: fill;
+  height: 300px;
+}
+
+#sandblasts .card-img-top-high {
+  object-fit: fill;
+  height: 700px;
+}
+
+#sandblasts .card-img-top-wide {
+  object-fit: fill;
+  height: 300px;
+}
+
+#sandblasts .card-body {
+  background-color: #1378CE;
+  color: #F5F9FF;
+  font-weight: bold;
+  font-size: 1.25rem;
+  padding: 0.25rem;
+}
+
+#sandblasts .card-title {
+  margin-bottom: 0;
+}
+
+/* Printing */
+
+#printings .card, #printings .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#printings .card-img-top {
+  object-fit: fill;
+  height: 300px;
+}
+
+#printings .card-img-top-high {
+  object-fit: fill;
+  height: 700px;
+}
+
+#printings .card-img-top-wide {
+  object-fit: fill;
+  height: 300px;
+}
+
+#printings .card-body {
+  background-color: #1378CE;
+  color: #F5F9FF;
+  font-weight: bold;
+  font-size: 1.25rem;
+  padding: 0.25rem;
+}
+
+#printings .card-title {
+  margin-bottom: 0;
+}
