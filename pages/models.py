@@ -34,16 +34,14 @@ class Partner(models.Model):
 class ContactPage(models.Model):
     street_name = CharField(max_length=100)
     street_number = CharField(max_length=20, blank=True)
-    unit = CharField(max_length=20, blank=True)
-    entrance = CharField(max_length=20, blank=True)
     city = CharField(max_length=100)
     region = CharField(max_length=100)
     country = CharField(max_length=100)
     zip_code = CharField(max_length=6, blank=True)
     landline = CharField(max_length=20, blank=True)
-    fax = CharField(max_length=20, blank=True)
     mobile = CharField(max_length=20, blank=True)
-    email = EmailField()
+    primary_email = EmailField()
+    secondary_email = EmailField()
     schedule = TextField()
 
     class Meta:

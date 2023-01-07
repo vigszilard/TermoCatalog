@@ -67,10 +67,6 @@
                                 Fix: {{ contact_page.landline }}
                             {% endif %}
                             <br>
-                            {% if contact_page.fax %}
-                                Fax: {{ contact_page.fax }}
-                            {% endif %}
-                            <br>
                             {% if contact_page.mobile %}
                                 Mobil: {{ contact_page.mobile }}
                             {% endif %}
@@ -79,7 +75,10 @@
                     <div>
                         <label class="label" for="informationCell-email">E-mail</label>
                         <p id="informationCell-email">
-                            {{ contact_page.email }}
+                            {{ contact_page.primary_email }}
+                        </p>
+                        <p id="informationCell-email">
+                            {{ contact_page.secondary_email }}
                         </p>
                     </div>
                     <div>
