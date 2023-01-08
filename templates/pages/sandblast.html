@@ -27,7 +27,7 @@
         {% if not sandblast.high and not sandblast.wide %}
         <div class="col-md-4 col-lg-4 col-sm-6 align-items-stretch py-3">
           <div class="card rounded">
-            <img class="smallzoom card-img-top rounded-top" src="{{ sandblast.image.url }}" alt="">
+            <img class="smallzoom card-img-top rounded-top" src="{{ sandblast.image }}" alt="">
           </div>
           <div class="card-body rounded-bottom text-center">
             <span class="card-title">{{ sandblast.name }}</span>
@@ -37,7 +37,7 @@
         {% if sandblast.high and not sandblast.wide %}
         <div class="col-md-4 col-lg-4 col-sm-6 align-items-stretch py-3">
           <div class="card rounded">
-            <img class="smallzoom card-img-top-high rounded-top" src="{{ sandblast.image.url }}" alt="">
+            <img class="smallzoom card-img-top-high rounded-top" src="{{ sandblast.image }}" alt="">
           </div>
           <div class="card-body rounded-bottom text-center">
             <span class="card-title">{{ sandblast.name }}</span>
@@ -47,7 +47,7 @@
         {% if not sandblast.high and sandblast.wide %}
         <div class="col-md-4 col-lg-12 col-sm-6 align-items-stretch py-3">
           <div class="card rounded">
-            <img class="smallzoom card-img-top rounded-top" src="{{ sandblast.image.url }}" alt="">
+            <img class="smallzoom card-img-top rounded-top" src="{{ sandblast.image }}" alt="">
           </div>
           <div class="card-body rounded-bottom text-center">
             <span class="card-title">{{ sandblast.name }}</span>

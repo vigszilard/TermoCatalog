@@ -14,8 +14,7 @@ class ProductManager(models.Manager):
 class Product(models.Model):
     name = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    display_img = models.ImageField(upload_to=product_dir_path)
-    display_img.help_text = 'Dimensiuni recomandate: '
+    display_img = models.CharField(max_length=250)
     description = RichTextField()
     youtube_link = models.CharField(max_length=250, blank=True)
     external_link = models.CharField(max_length=250, blank=True)
@@ -23,7 +22,7 @@ class Product(models.Model):
     objects = ProductManager()
 
     def display_img_preview(self):
-        return mark_safe('<img src="{}" width="100" />'.format(self.display_img.url))
+        return mark_safe('<img src="{}" width="100" />'.format(self.display_img))
     display_img_preview.short_description = 'Display Image Preview'
     display_img_preview.allow_tags = True
 

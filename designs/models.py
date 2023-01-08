@@ -19,14 +19,14 @@ class SandblastManager(models.Manager):
 
 class Sandblast(models.Model):
     name = models.CharField(max_length=50)
-    image = models.ImageField(upload_to=product_dir_path_sb)
+    image = models.CharField(max_length=250)
     wide = models.BooleanField(default=False)
     high = models.BooleanField(default=False)
 
     sorted_by_size = SandblastManager()
 
     def display_img_preview(self):
-        return mark_safe('<img src="{}" width="100" />'.format(self.image.url))
+        return mark_safe('<img src="{}" width="100" />'.format(self.image))
 
     display_img_preview.short_description = 'Display Image Preview'
     display_img_preview.allow_tags = True
@@ -42,14 +42,14 @@ class PrintingManager(models.Manager):
 
 class Printing(models.Model):
     name = models.CharField(max_length=50)
-    image = models.ImageField(upload_to=product_dir_path_pr)
+    image = models.CharField(max_length=250)
     wide = models.BooleanField(default=False)
     high = models.BooleanField(default=False)
 
     sorted_by_size = PrintingManager()
 
     def display_img_preview(self):
-        return mark_safe('<img src="{}" width="100" />'.format(self.image.url))
+        return mark_safe('<img src="{}" width="100" />'.format(self.image))
 
     display_img_preview.short_description = 'Display Image Preview'
     display_img_preview.allow_tags = True
