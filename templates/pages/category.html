@@ -39,7 +39,7 @@
             <div class="col-md-4 col-lg-3 col-sm-6 align-items-stretch py-3">
               <a href="{% url 'product' product.id %}">
                 <div class="card rounded">
-                  <img class="card-img-top rounded" src="{{ product.display_img.url }}" alt="">
+                  <img class="card-img-top rounded" src="{{ product.display_img }}" alt="{{ product.name }}">
                   <div class="card-body rounded-bottom text-center">
                       <span class="card-title">{{ product.name }}</span>
                   </div>
@@ -62,13 +62,13 @@
               {% if forloop.first %}
                 <div class="carousel-item active">
                   <a href="{{ img.photo.url }}" data-lightbox="home-images">
-                    <div class="gallery-img" style="background-image: url('{{ img.photo.url }}')"></div>
+                    <div class="gallery-img" style="background-image: url('{{ img.photo }}')"></div>
                   </a>
                 </div>
               {% else %}
                 <div class="carousel-item">
                   <a href="{{ img.photo.url }}" data-lightbox="home-images">
-                    <div class="gallery-img" style="background-image: url('{{ img.photo.url }}')"></div>
+                    <div class="gallery-img" style="background-image: url('{{ img.photo }}')"></div>
                   </a>
                 </div>
               {% endif %}
@@ -89,11 +89,11 @@
           {% for img in gallery %}
             {% if forloop.first %}
               <li data-target="#carousel-thumb" data-slide-to="{{ forloop.counter0 }}" class="active">
-                <div class="gallery-thumbnail" style="background-image: url('{{ img.photo.url }}')"></div>
+                <div class="gallery-thumbnail" style="background-image: url('{{ img.photo }}')"></div>
               </li>
             {% else %}
               <li data-target="#carousel-thumb" data-slide-to="{{ forloop.counter0 }}">
-                <div class="gallery-thumbnail" style="background-image: url('{{ img.photo.url }}')"></div>
+                <div class="gallery-thumbnail" style="background-image: url('{{ img.photo }}')"></div>
               </li>
             {% endif %}
           {% endfor %}

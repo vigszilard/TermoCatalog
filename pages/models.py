@@ -65,8 +65,8 @@ class FAQPage(models.Model):
         return 'FAQ page details'
 
 class DesignsPage(models.Model):
-    sandblast = ImageField(upload_to='photos/designs/')
-    printing = ImageField(upload_to='photos/designs/')
+    sandblast = models.CharField(max_length=250)
+    printing = models.CharField(max_length=250)
     content = RichTextField()
 
     class Meta:

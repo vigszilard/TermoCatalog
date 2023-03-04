@@ -18,7 +18,7 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'categories'
     name = models.CharField(max_length=100)
-    display_img = models.ImageField(upload_to=category_dir_path)
+    display_img = models.CharField(max_length=250)
     description = RichTextField()
     youtube_link = models.CharField(max_length=250, blank=True)
     external_link = models.CharField(max_length=250, blank=True)
@@ -27,7 +27,7 @@ class Category(models.Model):
     sorted_by_relevance = CategoryManager()
 
     def display_img_preview(self):
-        return mark_safe('<img src="{}" width="100" />'.format(self.display_img.url))
+        return mark_safe('<img src="{}" width="100" />'.format(self.display_img))
     display_img_preview.short_description = 'Display Image Preview'
     display_img_preview.allow_tags = True
 
@@ -36,7 +36,7 @@ class Category(models.Model):
 
 class Gallery(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to=gallery_dir_path)
+    photo =  models.CharField(max_length=250)
 
     def __str__(self):
         return self.category.name

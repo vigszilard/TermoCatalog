@@ -27,7 +27,7 @@
         {% if not printing.high and not printing.wide %}
         <div class="col-md-4 col-lg-4 col-sm-6 align-items-stretch py-3">
           <div class="card rounded">
-            <img class="smallzoom card-img-top rounded-top" src="{{ printing.image.url }}" alt="">
+            <img class="smallzoom card-img-top rounded-top" src="{{ printing.image }}" alt="">
           </div>
           <div class="card-body rounded-bottom text-center">
             <span class="card-title">{{ printing.name }}</span>
@@ -37,7 +37,7 @@
         {% if printing.high and not printing.wide %}
         <div class="col-md-4 col-lg-4 col-sm-6 align-items-stretch py-3">
           <div class="card rounded">
-            <img class="smallzoom card-img-top-high rounded-top" src="{{ printing.image.url }}" alt="">
+            <img class="smallzoom card-img-top-high rounded-top" src="{{ printing.image }}" alt="">
           </div>
           <div class="card-body rounded-bottom text-center">
             <span class="card-title">{{ printing.name }}</span>
@@ -47,7 +47,7 @@
         {% if not printing.high and printing.wide %}
         <div class="col-md-4 col-lg-12 col-sm-6 align-items-stretch py-3">
           <div class="card rounded">
-            <img class="smallzoom card-img-top-wide rounded-top" src="{{ printing.image.url }}" alt="">
+            <img class="smallzoom card-img-top-wide rounded-top" src="{{ printing.image }}" alt="">
           </div>
           <div class="card-body rounded-bottom text-center">
             <span class="card-title">{{ printing.name }}</span>

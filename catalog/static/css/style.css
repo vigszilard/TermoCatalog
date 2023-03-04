@@ -542,7 +542,7 @@ body > section:last-of-type {
 }
 
 #products .card-img-top {
-  object-fit: contain;
+  object-fit: cover;
   height: 200px;
 }
 
