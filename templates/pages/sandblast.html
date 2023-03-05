@@ -1,64 +1,64 @@
 {% extends 'base.html' %}
 
 {% block title %}
-> Catalog Modele Sablare
+> Catalog Modele Șablare
 {% endblock %}
 
 {% block content %}
 
-<section id="back-button">
-  <div class="container">
-    <a href="{% url 'designs' %}">
-      <i class="fas fa-angle-left"></i>
-      Înapoi
-    </a>
-  </div>
-</section>
+  <section id="back-button">
+    <div class="container">
+      <a href="{% url 'designs' %}">
+        <i class="fas fa-angle-left"></i>
+        Personalizare
+      </a>
+    </div>
+  </section>
 
-<section id="sandblasts">
-  <div class="container">
-    <h3 class="text-center mb-5">Modele sablare</h3>
-  </div>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="card-deck w-100">
-        {% if sandblasts %}
-        {% for sandblast in sandblasts %}
-        {% if not sandblast.high and not sandblast.wide %}
-        <div class="col-md-4 col-lg-4 col-sm-6 align-items-stretch py-3">
-          <div class="card rounded">
-            <img class="smallzoom card-img-top rounded-top" src="{{ sandblast.image }}" alt="">
-          </div>
-          <div class="card-body rounded-bottom text-center">
-            <span class="card-title">{{ sandblast.name }}</span>
-          </div>
+  <section id="sandblasts">
+    <div class="container">
+      <h3 class="text-center mb-5">Modele șablare</h3>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="card-deck w-100">
+          {% if sandblasts %}
+            {% for sandblast in sandblasts %}
+              {% if not sandblast.high and not sandblast.wide %}
+                <div class="col-md-4 col-lg-4 col-sm-6 align-items-stretch py-3">
+                  <div class="card rounded">
+                    <img class="smallzoom card-img-top rounded-top" src="{{ sandblast.image }}" alt="">
+                  </div>
+                  <div class="card-body rounded-bottom text-center">
+                    <span class="card-title">{{ sandblast.name }}</span>
+                  </div>
+                </div>
+              {% endif %}
+              {% if sandblast.high and not sandblast.wide %}
+                <div class="col-md-4 col-lg-4 col-sm-6 align-items-stretch py-3">
+                  <div class="card rounded">
+                    <img class="smallzoom card-img-top-high rounded-top" src="{{ sandblast.image }}" alt="">
+                  </div>
+                  <div class="card-body rounded-bottom text-center">
+                    <span class="card-title">{{ sandblast.name }}</span>
+                  </div>
+                </div>
+              {% endif %}
+              {% if not sandblast.high and sandblast.wide %}
+                <div class="col-md-4 col-lg-12 col-sm-6 align-items-stretch py-3">
+                  <div class="card rounded">
+                    <img class="smallzoom card-img-top rounded-top" src="{{ sandblast.image }}" alt="">
+                  </div>
+                  <div class="card-body rounded-bottom text-center">
+                    <span class="card-title">{{ sandblast.name }}</span>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
         </div>
-        {% endif %}
-        {% if sandblast.high and not sandblast.wide %}
-        <div class="col-md-4 col-lg-4 col-sm-6 align-items-stretch py-3">
-          <div class="card rounded">
-            <img class="smallzoom card-img-top-high rounded-top" src="{{ sandblast.image }}" alt="">
-          </div>
-          <div class="card-body rounded-bottom text-center">
-            <span class="card-title">{{ sandblast.name }}</span>
-          </div>
-        </div>
-        {% endif %}
-        {% if not sandblast.high and sandblast.wide %}
-        <div class="col-md-4 col-lg-12 col-sm-6 align-items-stretch py-3">
-          <div class="card rounded">
-            <img class="smallzoom card-img-top rounded-top" src="{{ sandblast.image }}" alt="">
-          </div>
-          <div class="card-body rounded-bottom text-center">
-            <span class="card-title">{{ sandblast.name }}</span>
-          </div>
-        </div>
-        {% endif %}
-        {% endfor %}
-        {% endif %}
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 {% endblock %}
