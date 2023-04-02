@@ -6,20 +6,19 @@
 
 {% block content %}
 
-    <section id="breadcrumbs" class="breadcrumbs">
+    <section id="back-button">
         <div class="container">
-          <div class="d-flex justify-content-between align-items-center">
-            <h3>Contactați-ne</h3>
-            <ol>
-                <li>
-                    <a href="{% url 'index' %}">Pagina principală</a>
-                </li>
-                <li>Contactați-ne</li>
-            </ol>
-          </div>
+            <a href="{% url 'index' %}">
+                <i class="fas fa-angle-left"></i>
+                Pagina principală
+            </a>
         </div>
     </section>
+
     <section id="contact-details">
+        <div class="container">
+            <h3 class="text-center mb-5">Contactați-ne</h3>
+        </div>
         {% if messages %}
             {% for message in messages %}
                 {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
@@ -76,8 +75,7 @@
                         <label class="label" for="informationCell-email">E-mail</label>
                         <p id="informationCell-email">
                             {{ contact_page.primary_email }}
-                        </p>
-                        <p id="informationCell-email">
+                            <br>
                             {{ contact_page.secondary_email }}
                         </p>
                     </div>
@@ -94,10 +92,11 @@
             </div>
         </div>
     </section>
+
     <section id="contact-form">
         <hr>
         <div class="container justify-content-center">
-            <p class="text-center">Pentru întrebări sau informații suplimentare, contactați Echipa Termotatotal 
+            <p class="text-center">Pentru întrebări sau informații suplimentare, contactați Echipa Termototal
                 prin completarea formularului de mai jos.
             </p>
             <form class="form-group align-items-center" method="POST" enctype="multipart/form-data" action="{% url 'send_contact_form' %}">

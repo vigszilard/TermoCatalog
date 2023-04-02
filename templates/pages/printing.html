@@ -6,59 +6,59 @@
 
 {% block content %}
 
-<section id="back-button">
-  <div class="container">
-    <a href="{% url 'designs' %}">
-      <i class="fas fa-angle-left"></i>
-      Înapoi
-    </a>
-  </div>
-</section>
+  <section id="back-button">
+    <div class="container">
+      <a href="{% url 'designs' %}">
+        <i class="fas fa-angle-left"></i>
+        Personalizare
+      </a>
+    </div>
+  </section>
 
-<section id="printings">
-  <div class="container">
-    <h3 class="text-center mb-5">Modele printare</h3>
-  </div>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="card-deck w-100">
-        {% if printings %}
-        {% for printing in printings %}
-        {% if not printing.high and not printing.wide %}
-        <div class="col-md-4 col-lg-4 col-sm-6 align-items-stretch py-3">
-          <div class="card rounded">
-            <img class="smallzoom card-img-top rounded-top" src="{{ printing.image }}" alt="">
-          </div>
-          <div class="card-body rounded-bottom text-center">
-            <span class="card-title">{{ printing.name }}</span>
-          </div>
+  <section id="printings">
+    <div class="container">
+      <h3 class="text-center mb-5">Modele printare</h3>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="card-deck w-100">
+          {% if printings %}
+            {% for printing in printings %}
+              {% if not printing.high and not printing.wide %}
+                <div class="col-md-4 col-lg-4 col-sm-6 align-items-stretch py-3">
+                  <div class="card rounded">
+                    <img class="smallzoom card-img-top rounded-top" src="{{ printing.image }}" alt="">
+                  </div>
+                  <div class="card-body rounded-bottom text-center">
+                    <span class="card-title">{{ printing.name }}</span>
+                  </div>
+                </div>
+              {% endif %}
+              {% if printing.high and not printing.wide %}
+                <div class="col-md-4 col-lg-4 col-sm-6 align-items-stretch py-3">
+                  <div class="card rounded">
+                    <img class="smallzoom card-img-top-high rounded-top" src="{{ printing.image }}" alt="">
+                  </div>
+                  <div class="card-body rounded-bottom text-center">
+                    <span class="card-title">{{ printing.name }}</span>
+                  </div>
+                </div>
+              {% endif %}
+              {% if not printing.high and printing.wide %}
+                <div class="col-md-4 col-lg-12 col-sm-6 align-items-stretch py-3">
+                  <div class="card rounded">
+                    <img class="smallzoom card-img-top-wide rounded-top" src="{{ printing.image }}" alt="">
+                  </div>
+                  <div class="card-body rounded-bottom text-center">
+                    <span class="card-title">{{ printing.name }}</span>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
         </div>
-        {% endif %}
-        {% if printing.high and not printing.wide %}
-        <div class="col-md-4 col-lg-4 col-sm-6 align-items-stretch py-3">
-          <div class="card rounded">
-            <img class="smallzoom card-img-top-high rounded-top" src="{{ printing.image }}" alt="">
-          </div>
-          <div class="card-body rounded-bottom text-center">
-            <span class="card-title">{{ printing.name }}</span>
-          </div>
-        </div>
-        {% endif %}
-        {% if not printing.high and printing.wide %}
-        <div class="col-md-4 col-lg-12 col-sm-6 align-items-stretch py-3">
-          <div class="card rounded">
-            <img class="smallzoom card-img-top-wide rounded-top" src="{{ printing.image }}" alt="">
-          </div>
-          <div class="card-body rounded-bottom text-center">
-            <span class="card-title">{{ printing.name }}</span>
-          </div>
-        </div>
-        {% endif %}
-        {% endfor %}
-        {% endif %}
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 {% endblock %}

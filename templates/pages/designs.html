@@ -6,51 +6,50 @@
 
 {% block content %}
 
-<section id="breadcrumbs" class="breadcrumbs">
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-center">
-      <h3>Personalizare</h3>
-      <ol>
-          <li>
-              <a href="{% url 'index' %}">Pagina principală</a>
-          </li>
-          <li>Personalizare</li>
-      </ol>
-    </div>
-  </div>
-</section>
-<section id="designs">
-  <div class="container">
-      <div class="content">
-          {{ designspage.content | safe }}
-      </div>
-  </div>
-  <div class="container">
-    <div class="row-eq-height justify-content-center">
-      <div class="card-deck w-100">
-            <div class="col-md-6 col-lg-6 col-sm-6 align-items-stretch py-3">
-              <a href="{% url 'sandblast' %}">
-                <div class="card rounded">
-                  <img class="card-img-top rounded-top" src="{{ designspage.sandblast }}" alt="">
-                  <div class="card-body rounded-bottom text-center">
-                    <span class="card-title">Sablare</span>
-                  </div>
-                </div>
-              </a>
+    <section id="back-button">
+        <div class="container">
+            <a href="{% url 'index' %}">
+                <i class="fas fa-angle-left"></i>
+                Pagina principală
+            </a>
+        </div>
+    </section>
+
+    <section id="designs">
+        <div class="container">
+            <h3 class="text-center mb-5">Personalizare</h3>
+        </div>
+        <div class="container">
+            <div class="content">
+                {{ designspage.content | safe }}
             </div>
-            <div class="col-md-6 col-lg-6 col-sm-6 align-items-stretch py-3">
-              <a href="{% url 'printing' %}">
-                <div class="card rounded">
-                  <img class="card-img-top rounded-top" src="{{ designspage.printing }}" alt="">
-                  <div class="card-body rounded-bottom text-center">
-                    <span class="card-title">Printare</span>
-                  </div>
+        </div>
+        <div class="container">
+            <div class="row-eq-height justify-content-center">
+                <div class="card-deck w-100">
+                    <div class="col-md-6 col-lg-6 col-sm-6 align-items-stretch py-3">
+                        <a href="{% url 'sandblast' %}">
+                            <div class="card rounded">
+                                <img class="card-img-top rounded-top" src="{{ designspage.sandblast }}" alt="">
+                                <div class="card-body rounded-bottom text-center">
+                                    <span class="card-title">Sablare</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 align-items-stretch py-3">
+                        <a href="{% url 'printing' %}">
+                            <div class="card rounded">
+                                <img class="card-img-top rounded-top" src="{{ designspage.printing }}" alt="">
+                                <div class="card-body rounded-bottom text-center">
+                                    <span class="card-title">Printare</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-              </a>
             </div>
-      </div>
-    </div>
-  </div>
-</section>
+        </div>
+    </section>
 
 {% endblock %}
