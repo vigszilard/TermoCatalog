@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  > {{ product.name }}
+  {% if product.number %}
+    > {{ product.name }} {{ product.number }}
+  {% else %}
+    > {{ product.name }}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -17,7 +21,11 @@
 
   <section id="product-image">
     <div class="container">
-      <h3 class="text-center mb-5">{{ product.name }}</h3>
+      {% if product.number %}
+        <h3 class="text-center mb-5">{{ product.name }} {{ product.number }}</h3>
+      {% else %}
+        <h3 class="text-center mb-5">{{ product.name }}</h3> 
+      {% endif %}
     </div>
     {% if messages %}
       {% for message in messages %}
@@ -48,24 +56,26 @@
     </div>
   </section>
 
-  <section id="product-info">
-    <hr>
-    <div class="container justify-content-center">
-      <div class="card card-body rounded shadow">
-        <p>{{ product.description | safe }}</p>
-        {% if product.youtube_link %}
-          <div class="embed-responsive embed-responsive-21by9">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ product.youtube_link | cut:'https://www.youtube.com/watch?v=' }}" title="YouTube video player" allowfullscreen></iframe>
-          </div>
-        {% endif %}
-        {% if product.external_link %}
-          <p>Pentru a afla mai multe detalii, click
-            <a id="external-link" href="{{ product.external_link }}" target="_blank" rel="noopener noreferrer">aici</a>
-          </p>
-        {% endif %}
+  {% if product.description %}
+    <section id="product-info">
+      <hr>
+      <div class="container justify-content-center">
+        <div class="card card-body rounded shadow">
+          <p>{{ product.description | safe }}</p>
+          {% if product.youtube_link %}
+            <div class="embed-responsive embed-responsive-21by9">
+              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ product.youtube_link | cut:'https://www.youtube.com/watch?v=' }}" title="YouTube video player" allowfullscreen></iframe>
+            </div>
+          {% endif %}
+          {% if product.external_link %}
+            <p>Pentru a afla mai multe detalii, click
+              <a id="external-link" href="{{ product.external_link }}" target="_blank" rel="noopener noreferrer">aici</a>
+            </p>
+          {% endif %}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  {% endif %}
 
   {% block offer %}
         {% include 'components/_get_offer_modal.html' %}

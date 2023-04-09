@@ -27,12 +27,21 @@
           {% for product in products %}
             <div class="col-md-4 col-lg-3 col-sm-6 align-items-stretch py-3">
               <a href="{% url 'product' product.id %}">
+                {% if product.number %}
+                  <div class="card rounded">
+                    <img class="card-img-top rounded" src="{{ product.display_img }}" alt="{{ product.name }} {{ product.number }}">
+                    <div class="card-body rounded-bottom text-center">
+                        <span class="card-title">{{ product.name }} {{ product.number }}</span>
+                    </div>
+                  </div>
+                {% else %}
                 <div class="card rounded">
                   <img class="card-img-top rounded" src="{{ product.display_img }}" alt="{{ product.name }}">
                   <div class="card-body rounded-bottom text-center">
                       <span class="card-title">{{ product.name }}</span>
                   </div>
                 </div>
+                {% endif %}
               </a>
             </div>
           {% endfor %}
