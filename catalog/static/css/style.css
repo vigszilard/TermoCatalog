@@ -823,3 +823,23 @@ body > section:last-of-type {
 #printings .card-title {
   margin-bottom: 0;
 }
+
+/* Paginator */
+.pagination {
+  background-color: #F5F9FF;
+}
+
+.page-item, .page-link {
+  background-color: #F5F9FF;
+  color: #1378CE;
+  font-weight: 600;
+}
+
+.page-item.disabled .page-link {
+  color: #404756;
+  background-color: #F5F9FF;
+}
+
+.page-link:hover {
+  background-color: #A4ABBD;
+}
