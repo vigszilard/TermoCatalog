@@ -71,7 +71,7 @@ def send_contact_form(request):
         get_recaptcha = request.POST.get("g-recaptcha-response")
         if get_recaptcha:
             try:
-                send_mail(subject, message, 'svc@termototal.ro', ['proiectare@termototal.ro'], fail_silently=False, html_message=html_message)
+                send_mail(subject, message, 'termototalcomenzi@gmail.com', ['speciale@termototal.ro'], fail_silently=False, html_message=html_message)
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             except SMTPException as ex:
