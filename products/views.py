@@ -53,8 +53,8 @@ def send_offer_form(request):
         email = EmailMultiAlternatives(
             subject=subject,
             body=message,
-            from_email='svc@termototal.ro',
-            to=['proiectare@termototal.ro']
+            from_email='termototalcomenzi@gmail.com',
+            to=['speciale@termototal.ro']
         )
         email.attach_alternative(html_message, "text/html")
         if 'file' in request.FILES:
