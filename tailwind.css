@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/forms";
 
-@source "../../../templates";
+@source "./templates";
 
 @theme {
   /* Brand colors matching termototal.ro */

@@ -8,6 +8,7 @@ staticfiles/
 *.png
 !catalog/static/img/*.png
 
+
 ### Django ###
 *.log
 *.pot

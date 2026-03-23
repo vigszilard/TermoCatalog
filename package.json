@@ -4,8 +4,8 @@
   "description": "![glass_logo-ttl](https://user-images.githubusercontent.com/34940150/230794616-69d592b9-c6fd-4580-8dc7-519974144041.jpg)",
   "main": "index.js",
   "scripts": {
-    "build:css": "tailwindcss -i ./catalog/static/css/input.css -o ./catalog/static/css/style.css --minify",
-    "watch:css": "tailwindcss -i ./catalog/static/css/input.css -o ./catalog/static/css/style.css --watch"
+    "build:css": "tailwindcss -i ./tailwind.css -o ./catalog/static/css/style.css --minify",
+    "watch:css": "tailwindcss -i ./tailwind.css -o ./catalog/static/css/style.css --watch"
   },
   "repository": {
     "type": "git",
