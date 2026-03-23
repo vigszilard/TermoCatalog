@@ -1,16 +1,33 @@
 {% load static %}
 
-{% block partners %}
-    <section id="suppliers">
-        {% if partners %}
-            <hr>
-            <div class="owl-carousel partners owl-theme container">
-                {% for partner in partners %}
-                    <div>
-                        <img src="{{ partner.logo.url }}" alt="{{ partner.name }}">
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-    </section>
-{% endblock %}
+{% if partners %}
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-center text-xl font-bold text-tt-navy mb-10">Partenerii noștri</h2>
+    <div class="swiper partners-swiper">
+      <div class="swiper-wrapper items-center">
+        {% for partner in partners %}
+          <div class="swiper-slide text-center">
+            <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="mx-auto max-h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Swiper('.partners-swiper', {
+      loop: true,
+      autoplay: { delay: 3000, disableOnInteraction: false },
+      spaceBetween: 60,
+      breakpoints: {
+        0: { slidesPerView: 2 },
+        600: { slidesPerView: 3 },
+        1000: { slidesPerView: 5 },
+      },
+    });
+  });
+</script>
+{% endif %}

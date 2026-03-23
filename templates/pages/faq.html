@@ -1,45 +1,47 @@
 {% extends 'base.html' %}
 
-{% load static %}
-
-{% block title %}
-  > Întrebări frecvente
-{% endblock %}
+{% block title %}| Întrebări frecvente{% endblock %}
 
 {% block content %}
 
-    <section id="back-button">
-        <div class="container">
-            <a href="{% url 'index' %}">
-                <i class="fas fa-angle-left"></i>
-                Pagina principală
-            </a>
-        </div>
-    </section>
+  <!-- Header -->
+  <section class="relative -mt-20 bg-tt-navy overflow-hidden">
+    <div class="relative max-w-7xl mx-auto px-6 pt-36 pb-16">
+      <p class="text-tt-orange font-semibold text-sm tracking-widest uppercase mb-4">Suport</p>
+      <h1 class="text-4xl font-bold text-white">Întrebări frecvente</h1>
+    </div>
+  </section>
 
-    <section id="faq">
-        <div class="container">
-            <h3 class="text-center mb-5">Întrebări frecvente</h3>
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-6">
+      {% if faqs %}
+        <div class="space-y-4" x-data="{ openId: null }">
+          {% for faq in faqs %}
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden transition-shadow"
+                 :class="openId === {{ faq.pk }} ? 'shadow-md ring-1 ring-tt-navy/20' : ''">
+              <button @click="openId = openId === {{ faq.pk }} ? null : {{ faq.pk }}"
+                      class="w-full text-left px-6 py-5 flex justify-between items-center gap-4 cursor-pointer">
+                <span class="font-semibold transition-colors"
+                      :class="openId === {{ faq.pk }} ? 'text-tt-orange' : 'text-tt-navy'">
+                  {{ faq.question }}
+                </span>
+                <span class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300"
+                      :class="openId === {{ faq.pk }} ? 'bg-tt-navy text-white rotate-180' : 'bg-tt-bg text-tt-text-light'">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </button>
+              <div x-show="openId === {{ faq.pk }}" x-collapse x-cloak>
+                <div class="px-6 pb-5 text-tt-text-light leading-relaxed">
+                  {{ faq.answer | linebreaks }}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
         </div>
-        <div id="accordion" class="container">
-            {% if faqs %}
-                {% for faq in faqs %}
-                    <div class="card">
-                        <div class="card-header" id="heading_{{ faq.pk }}">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse_{{ faq.pk }}" aria-expanded="false" aria-controls="collapse_{{ faq.pk }}">
-                                    {{ faq.question }}
-                            </button>
-                        </div>
-                        <div id="collapse_{{ faq.pk }}" class="collapse" aria-labelledby="heading_{{ faq.pk }}" data-parent="#accordion">
-                            <div class="card-body">
-                                {{ faq.answer | linebreaks }}
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                {% endfor %}
-            {% endif %}
-        </div>
-    </section>
+      {% endif %}
+    </div>
+  </section>
 
 {% endblock %}

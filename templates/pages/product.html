@@ -1,84 +1,89 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  {% if product.number %}
-    > {{ product.name }} {{ product.number }}
-  {% else %}
-    > {{ product.name }}
-  {% endif %}
+  {% if product.number %}| {{ product.name }} {{ product.number }}{% else %}| {{ product.name }}{% endif %}
 {% endblock %}
 
 {% block content %}
 
-  <section id="back-button">
-    <div class="container">
-      <a href="{% url 'category' product.category_id %}">
-        <i class="fas fa-angle-left"></i>
-        {{ product.category }}
-      </a>
-    </div>
-  </section>
+  <!-- Breadcrumb -->
+  <div class="max-w-7xl mx-auto px-6 pt-8 pb-4">
+    <nav class="flex items-center gap-2 text-sm text-tt-text-light">
+      <a href="{% url 'index' %}" class="hover:text-tt-orange transition-colors">Produse</a>
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+      <a href="{% url 'category' product.category_id %}" class="hover:text-tt-orange transition-colors">{{ product.category }}</a>
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+      <span class="text-tt-navy font-medium">{{ product.name }}{% if product.number %} {{ product.number }}{% endif %}</span>
+    </nav>
+  </div>
 
-  <section id="product-image">
-    <div class="container">
-      {% if product.number %}
-        <h3 class="text-center mb-5">{{ product.name }} {{ product.number }}</h3>
-      {% else %}
-        <h3 class="text-center mb-5">{{ product.name }}</h3> 
+  <!-- Product -->
+  <section class="pb-20" x-data="{ showModal: false }">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <!-- Messages -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="mb-6 p-4 rounded-xl flex items-center gap-3 {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}bg-tt-error/10 text-tt-error{% else %}bg-tt-success/10 text-tt-success{% endif %}">
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            {% else %}
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            {% endif %}
+            <span class="font-medium">{{ message }}</span>
+          </div>
+        {% endfor %}
       {% endif %}
-    </div>
-    {% if messages %}
-      {% for message in messages %}
-        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-            <div class="alert error-message" role="alert">
-                <i class="fas fa-times"></i>
-                {{ message }}
-            </div>
-        {% else %}
-            <div class="alert success-message" role="alert">
-                <i class="fas fa-check"></i>
-                {{ message }}
-            </div>
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-    <div class="container text-center">
-      <img class="zoom" src="{{ product.display_img }}" alt="{{ product.display_img }}">
-    </div>                             
-  </section>
 
-  <section id="get-offer">
-    <hr>
-    <div class="container text-center">
-      <button class="btn btn-submit" data-toggle="modal" data-target="#getOfferModal">
-        Vreau ofertă de preț
-      </button>
-    </div>
-  </section>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <!-- Image -->
+        <div class="rounded-2xl overflow-hidden bg-white shadow-sm"
+             x-data="{ zooming: false, x: 50, y: 50 }"
+             @mousemove="zooming = true; x = ($event.offsetX / $el.offsetWidth * 100); y = ($event.offsetY / $el.offsetHeight * 100)"
+             @mouseleave="zooming = false">
+          <img src="{{ product.display_img }}"
+               alt="{{ product.name }}{% if product.number %} {{ product.number }}{% endif %}"
+               class="w-full max-h-[550px] object-contain cursor-zoom-in transition-transform duration-200"
+               :style="zooming ? `transform: scale(2); transform-origin: ${x}% ${y}%` : ''">
+        </div>
 
-  {% if product.description %}
-    <section id="product-info">
-      <hr>
-      <div class="container justify-content-center">
-        <div class="card card-body rounded shadow">
-          <p>{{ product.description | safe }}</p>
+        <!-- Details -->
+        <div>
+          <h1 class="text-3xl font-bold text-tt-navy mb-6">
+            {{ product.name }}{% if product.number %} {{ product.number }}{% endif %}
+          </h1>
+
+          {% if product.description %}
+            <div class="prose-tt mb-8">
+              {{ product.description | safe }}
+            </div>
+          {% endif %}
+
           {% if product.youtube_link %}
-            <div class="embed-responsive embed-responsive-21by9">
-              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ product.youtube_link | cut:'https://www.youtube.com/watch?v=' }}" title="YouTube video player" allowfullscreen></iframe>
+            <div class="relative pb-[56.25%] h-0 mb-8 rounded-xl overflow-hidden">
+              <iframe class="absolute inset-0 w-full h-full"
+                      src="https://www.youtube.com/embed/{{ product.youtube_link | cut:'https://www.youtube.com/watch?v=' }}"
+                      title="YouTube video player" allowfullscreen></iframe>
             </div>
           {% endif %}
+
           {% if product.external_link %}
-            <p>Pentru a afla mai multe detalii, click
-              <a id="external-link" href="{{ product.external_link }}" target="_blank" rel="noopener noreferrer">aici</a>
-            </p>
+            <a href="{{ product.external_link }}" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 text-tt-orange font-medium hover:text-tt-orange transition-colors mb-8">
+              Mai multe detalii
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+            </a>
           {% endif %}
+
+          <button @click="showModal = true"
+                  class="w-full sm:w-auto bg-tt-navy text-white font-semibold text-lg px-8 py-3.5 rounded-xl hover:bg-tt-navy-deep hover:shadow-lg transition-all duration-200 cursor-pointer">
+            Vreau ofertă de preț
+          </button>
         </div>
       </div>
-    </section>
-  {% endif %}
+    </div>
 
-  {% block offer %}
-        {% include 'components/_get_offer_modal.html' %}
-  {% endblock %}
+    {% include 'components/_get_offer_modal.html' %}
+  </section>
 
 {% endblock %}

@@ -1,55 +1,62 @@
 {% extends 'base.html' %}
 
-{% block title %}
-> Catalog Modele
-{% endblock %}
+{% block title %}| Personalizare{% endblock %}
 
 {% block content %}
 
-    <section id="back-button">
-        <div class="container">
-            <a href="{% url 'index' %}">
-                <i class="fas fa-angle-left"></i>
-                Pagina principală
-            </a>
-        </div>
-    </section>
+  <!-- Header -->
+  <section class="relative -mt-20 bg-tt-navy overflow-hidden">
+    <div class="relative max-w-7xl mx-auto px-6 pt-36 pb-16">
+      <p class="text-tt-orange font-semibold text-sm tracking-widest uppercase mb-4">Personalizare</p>
+      <h1 class="text-4xl font-bold text-white">Modele și design-uri</h1>
+    </div>
+  </section>
 
-    <section id="designs">
-        <div class="container">
-            <h3 class="text-center mb-5">Personalizare</h3>
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      {% if designspage.content %}
+        <div class="prose-tt max-w-3xl mx-auto text-center mb-14">
+          {{ designspage.content | safe }}
         </div>
-        <div class="container">
-            <div class="content">
-                {{ designspage.content | safe }}
+      {% endif %}
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <a href="{% url 'sandblast' %}" class="group">
+          <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-sm">
+            <div class="relative overflow-hidden">
+              <img class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                   src="{{ designspage.sandblast }}" alt="Sablare">
+              <div class="absolute inset-0 bg-gradient-to-t from-tt-navy-deep/60 via-transparent to-transparent"></div>
             </div>
-        </div>
-        <div class="container">
-            <div class="row-eq-height justify-content-center">
-                <div class="card-deck w-100">
-                    <div class="col-md-6 col-lg-6 col-sm-6 align-items-stretch py-3">
-                        <a href="{% url 'sandblast' %}">
-                            <div class="card rounded">
-                                <img class="card-img-top rounded-top" src="{{ designspage.sandblast }}" alt="">
-                                <div class="card-body rounded-bottom text-center">
-                                    <span class="card-title">Sablare</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-sm-6 align-items-stretch py-3">
-                        <a href="{% url 'printing' %}">
-                            <div class="card rounded">
-                                <img class="card-img-top rounded-top" src="{{ designspage.printing }}" alt="">
-                                <div class="card-body rounded-bottom text-center">
-                                    <span class="card-title">Printare</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+            <div class="p-6">
+              <h3 class="font-bold text-xl text-tt-navy group-hover:text-tt-orange transition-colors">Sablare</h3>
+              <p class="text-tt-text-light text-sm mt-2">Descoperă modelele noastre de sablare pentru sticlă.</p>
+              <span class="inline-flex items-center gap-1 text-sm text-tt-orange font-medium mt-3 group-hover:gap-2 transition-all">
+                Vezi modele
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+              </span>
             </div>
-        </div>
-    </section>
+          </div>
+        </a>
+        <a href="{% url 'printing' %}" class="group">
+          <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-sm">
+            <div class="relative overflow-hidden">
+              <img class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                   src="{{ designspage.printing }}" alt="Printare">
+              <div class="absolute inset-0 bg-gradient-to-t from-tt-navy-deep/60 via-transparent to-transparent"></div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-bold text-xl text-tt-navy group-hover:text-tt-orange transition-colors">Printare</h3>
+              <p class="text-tt-text-light text-sm mt-2">Explorează opțiunile noastre de printare pe sticlă.</p>
+              <span class="inline-flex items-center gap-1 text-sm text-tt-orange font-medium mt-3 group-hover:gap-2 transition-all">
+                Vezi modele
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
 
 {% endblock %}

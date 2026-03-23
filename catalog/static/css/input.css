@@ -1,0 +1,121 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+@source "../../../templates";
+
+@theme {
+  /* Brand colors matching termototal.ro */
+  --color-tt-navy: #1B1464;
+  --color-tt-navy-deep: #110E40;
+  --color-tt-navy-light: #2A2080;
+  --color-tt-orange: #F7941D;
+  --color-tt-orange-hover: #E8850F;
+  --color-tt-white: #FFFFFF;
+  --color-tt-bg: #F5F5F7;
+  --color-tt-text: #2D3748;
+  --color-tt-text-light: #64748B;
+  --color-tt-border: #E2E8F0;
+  --color-tt-success: #059669;
+  --color-tt-error: #DC2626;
+
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  ::selection {
+    background-color: rgba(247, 148, 29, 0.25);
+    color: var(--color-tt-navy-deep);
+  }
+}
+
+/* Rich text from CKEditor */
+@layer components {
+  .prose-tt {
+    line-height: 1.85;
+    font-size: 1.05rem;
+    color: var(--color-tt-text);
+  }
+  .prose-tt h1, .prose-tt h2, .prose-tt h3, .prose-tt h4 {
+    margin-top: 1.5rem; margin-bottom: 0.75rem;
+    font-weight: 700; font-family: var(--font-display);
+    color: var(--color-tt-navy);
+  }
+  .prose-tt p { margin-bottom: 1rem; }
+  .prose-tt img { max-width: 100%; height: auto; border-radius: 1rem; margin: 1.5rem 0; }
+  .prose-tt ul { list-style: none; padding-left: 0; margin-bottom: 1rem; }
+  .prose-tt ul > li { padding-left: 1.5rem; position: relative; margin-bottom: 0.5rem; }
+  .prose-tt ul > li::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--color-tt-orange); position: absolute; left: 0; top: 0.65rem;
+  }
+  .prose-tt ol { list-style: none; padding-left: 0; counter-reset: item; margin-bottom: 1rem; }
+  .prose-tt ol > li { padding-left: 2.25rem; position: relative; margin-bottom: 0.5rem; counter-increment: item; }
+  .prose-tt ol > li::before {
+    content: counter(item);
+    background: var(--color-tt-orange); color: white;
+    width: 1.5rem; height: 1.5rem; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700;
+    position: absolute; left: 0; top: 0.15rem;
+  }
+  .prose-tt a { color: var(--color-tt-orange); text-decoration: underline; text-underline-offset: 3px; }
+  .prose-tt a:hover { color: var(--color-tt-orange-hover); }
+
+  /* White variant for navy backgrounds */
+  .prose-tt-light { color: rgba(255,255,255,0.8); }
+  .prose-tt-light h1, .prose-tt-light h2, .prose-tt-light h3, .prose-tt-light h4 { color: white; }
+  .prose-tt-light ul > li::before { background: var(--color-tt-orange); }
+  .prose-tt-light a { color: var(--color-tt-orange); }
+}
+
+/* Swiper nav */
+@layer components {
+  .swiper-button-prev, .swiper-button-next {
+    color: var(--color-tt-navy) !important;
+    background: rgba(255,255,255,0.92);
+    width: 48px !important; height: 48px !important;
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: all 0.25s;
+  }
+  .swiper-button-prev:hover, .swiper-button-next:hover {
+    background: white;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    transform: scale(1.05);
+  }
+  .swiper-button-prev::after, .swiper-button-next::after {
+    font-size: 16px !important; font-weight: bold;
+  }
+  .swiper-pagination-bullet-active { background: var(--color-tt-orange) !important; }
+}
+
+/* Card lift hover */
+@layer utilities {
+  .card-hover {
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 48px -12px rgba(27, 20, 100, 0.18);
+  }
+}
+
+/* Image reveal on group hover */
+@layer utilities {
+  .img-reveal { transition: transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+  .group:hover .img-reveal { transform: scale(1.06); }
+}
+
+/* Orange accent underline */
+@layer utilities {
+  .accent-bar::after {
+    content: ""; display: block; width: 48px; height: 3px; margin-top: 1rem;
+    background: var(--color-tt-orange); border-radius: 2px;
+  }
+  .accent-bar-center::after {
+    content: ""; display: block; width: 48px; height: 3px; margin: 1rem auto 0;
+    background: var(--color-tt-orange); border-radius: 2px;
+  }
+}

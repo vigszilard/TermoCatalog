@@ -1,53 +1,64 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
   <head>
-    <title>Termototal {% block title %} {% endblock %}</title>
+    <title>Termototal {% block title %}{% endblock %}</title>
     <link rel="icon" href="{% static 'img/termo-black.png' %}" media="(prefers-color-scheme:no-preference)" />
-    <link rel="icon" href="{% static 'img/termo-white.png' %}"  media="(prefers-color-scheme:dark)">
+    <link rel="icon" href="{% static 'img/termo-white.png' %}" media="(prefers-color-scheme:dark)">
     <link rel="icon" href="{% static 'img/termo-black.png' %}" media="(prefers-color-scheme:light)">
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-    <!-- Template Main CSS File -->
-    <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- Lighbox CSS File -->
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" />
-    <!-- Owl CSS File -->
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" />
-    <!-- Font CSS -->
-    <link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_head %}{% endblock %}
   </head>
-  <body>
+  <body class="bg-tt-bg text-tt-text font-sans min-h-screen flex flex-col antialiased"
+        x-data="{ scrolled: false }"
+        @scroll.window="scrolled = (window.scrollY > 50)">
 
     {% block header %}
-        {% include 'components/_header.html' %}
+      {% include 'components/_header.html' %}
     {% endblock %}
 
-    {% block content %}
+    <main class="flex-1 pt-[72px]">
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- CTA bar before footer -->
+    {% block cta_bar %}
+    <section class="relative bg-tt-navy overflow-hidden">
+      <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=30')] bg-cover bg-center opacity-15"></div>
+      <div class="relative max-w-7xl mx-auto px-6 py-16 text-center">
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-6">Descoperă soluțiile Termototal pentru proiectul tău!</h2>
+        <a href="{% url 'contact' %}" class="inline-flex items-center gap-2 bg-tt-orange text-white px-8 py-3.5 rounded-full font-semibold hover:bg-tt-orange-hover transition-all duration-300 hover:shadow-lg hover:shadow-tt-orange/30">
+          Contactează-ne
+        </a>
+      </div>
+    </section>
     {% endblock %}
 
     {% block footer %}
-        {% include 'components/_footer.html' %}
+      {% include 'components/_footer.html' %}
     {% endblock %}
-    
-    <a href="#" class="back-to-top">
-      <i class="fas fa-chevron-up"></i>
+
+    <!-- Back to top -->
+    <a href="#"
+       class="fixed bottom-8 right-8 z-40 flex items-center justify-center w-12 h-12 rounded-full bg-tt-orange text-white shadow-xl hover:bg-tt-orange-hover transition-all duration-300 hover:scale-110"
+       x-show="scrolled" x-transition.opacity>
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+      </svg>
     </a>
 
-    <!-- jQuery first, then JS -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" integrity="sha512-k2GFCTbp9rQU412BStrcD/rlwv1PYec9SNrkbQlo6RZCf75l6KcC3UwDY8H5n5hl4v77IDtIPwOk9Dqjs/mMBQ==" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{% static 'js/main.js' %}" ></script>
-    <script type="text/javascript" src="{% static 'js/okzoom.js' %}" ></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="{% static 'js/app.js' %}"></script>
+    {% block extra_js %}{% endblock %}
   </body>
 </html>

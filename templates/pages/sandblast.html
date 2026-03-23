@@ -1,95 +1,65 @@
 {% extends 'base.html' %}
 
-{% block title %}
-> Catalog Modele Sablare
-{% endblock %}
+{% block title %}| Modele Sablare{% endblock %}
 
 {% block content %}
 
-  <section id="back-button">
-    <div class="container">
-      <a href="{% url 'designs' %}">
-        <i class="fas fa-angle-left"></i>
-        Personalizare
-      </a>
-    </div>
-  </section>
-
-  <section id="sandblasts">
-    <div class="container">
-      <h3 class="text-center mb-5">Modele sablare</h3>
-    </div>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="card-deck w-100">
-          {% if sandblasts %}
-            {% for sandblast in page_obj %}
-              {% if not sandblast.high and not sandblast.wide %}
-                <div class="col-md-4 col-lg-4 col-sm-6 align-items-stretch py-3">
-                  <div class="card rounded">
-                    <img class="smallzoom card-img-top rounded-top" src="{{ sandblast.image }}" alt="">
-                  </div>
-                  <div class="card-body rounded-bottom text-center">
-                    <span class="card-title">{{ sandblast.name }}</span>
-                  </div>
-                </div>
-              {% endif %}
-              {% if sandblast.high and not sandblast.wide %}
-                <div class="col-md-4 col-lg-4 col-sm-6 align-items-stretch py-3">
-                  <div class="card rounded">
-                    <img class="smallzoom card-img-top-high rounded-top" src="{{ sandblast.image }}" alt="">
-                  </div>
-                  <div class="card-body rounded-bottom text-center">
-                    <span class="card-title">{{ sandblast.name }}</span>
-                  </div>
-                </div>
-              {% endif %}
-              {% if not sandblast.high and sandblast.wide %}
-                <div class="col-md-4 col-lg-12 col-sm-6 align-items-stretch py-3">
-                  <div class="card rounded">
-                    <img class="smallzoom card-img-top rounded-top" src="{{ sandblast.image }}" alt="">
-                  </div>
-                  <div class="card-body rounded-bottom text-center">
-                    <span class="card-title">{{ sandblast.name }}</span>
-                  </div>
-                </div>
-              {% endif %}
-            {% endfor %}
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </section>
-  <br/>
-  <section id="paginator">
-    <nav aria-label="Page navigation">
-      <ul class="pagination justify-content-center">
-        {% if page_obj.has_previous %}
-        <li class="page-item">
-          <a class="page-link" href="?page=1">&laquo; Prima pagină</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Pagina precedentă</a>
-        </li>
-        {% endif %}
-
-        <li class="page-item disabled">
-          <a class="page-link" href="#">
-            Pagina {{ page_obj.number }} din {{ page_obj.paginator.num_pages }}
-          </a>
-        </li>
-
-        {% if page_obj.has_next %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ page_obj.next_page_number }}">Pagina următoare</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Ultima pagină &raquo;</a>
-        </li>
-        {% endif %}
-      </ul>
+  <!-- Breadcrumb -->
+  <div class="max-w-7xl mx-auto px-6 pt-8 pb-4">
+    <nav class="flex items-center gap-2 text-sm text-tt-text-light">
+      <a href="{% url 'designs' %}" class="hover:text-tt-orange transition-colors">Personalizare</a>
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+      <span class="text-tt-navy font-medium">Sablare</span>
     </nav>
+  </div>
+
+  <section class="pb-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <h1 class="text-3xl font-bold text-tt-navy mb-10">Modele sablare</h1>
+
+      {% if sandblasts %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {% for sandblast in page_obj %}
+            <div class="{% if sandblast.wide %}sm:col-span-2 lg:col-span-3{% endif %}">
+              <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-sm">
+                <div class="overflow-hidden cursor-zoom-in"
+                     x-data="{ zooming: false, x: 50, y: 50 }"
+                     @mousemove="zooming = true; x = ($event.offsetX / $el.offsetWidth * 100); y = ($event.offsetY / $el.offsetHeight * 100)"
+                     @mouseleave="zooming = false">
+                  <img src="{{ sandblast.image }}" alt="{{ sandblast.name }}"
+                       class="w-full object-fill transition-transform duration-300 {% if sandblast.high %}h-[700px]{% else %}h-[300px]{% endif %}"
+                       :style="zooming ? `transform: scale(1.5); transform-origin: ${x}% ${y}%` : ''">
+                </div>
+                <div class="px-4 py-3">
+                  <h3 class="font-semibold text-tt-navy text-sm">{{ sandblast.name }}</h3>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
   </section>
 
+  <!-- Pagination -->
+  {% if page_obj.paginator.num_pages > 1 %}
+  <nav class="pb-16">
+    <div class="flex justify-center gap-2">
+      {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="px-4 py-2 rounded-xl bg-white text-tt-navy font-medium text-sm shadow-sm hover:shadow-md transition-shadow">
+          &larr; Înapoi
+        </a>
+      {% endif %}
+      <span class="px-4 py-2 rounded-xl bg-tt-navy text-white font-semibold text-sm">
+        {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+      </span>
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="px-4 py-2 rounded-xl bg-white text-tt-navy font-medium text-sm shadow-sm hover:shadow-md transition-shadow">
+          Înainte &rarr;
+        </a>
+      {% endif %}
+    </div>
+  </nav>
+  {% endif %}
 
 {% endblock %}

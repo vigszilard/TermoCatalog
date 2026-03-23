@@ -1,0 +1,30 @@
+{
+  "name": "termocatalog",
+  "version": "1.0.0",
+  "description": "![glass_logo-ttl](https://user-images.githubusercontent.com/34940150/230794616-69d592b9-c6fd-4580-8dc7-519974144041.jpg)",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./catalog/static/css/input.css -o ./catalog/static/css/style.css --minify",
+    "watch:css": "tailwindcss -i ./catalog/static/css/input.css -o ./catalog/static/css/style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vigszilard/TermoCatalog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/vigszilard/TermoCatalog/issues"
+  },
+  "homepage": "https://github.com/vigszilard/TermoCatalog#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "@tailwindcss/forms": "^0.5.11",
+    "tailwindcss": "^4.2.2"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.58.2"
+  }
+}

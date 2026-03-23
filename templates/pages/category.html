@@ -1,153 +1,164 @@
 {% extends 'base.html' %}
-
 {% load custom_tags %}
 
-{% block title %}
-  > {{ category.name }}
-{% endblock %}
+{% block title %}| {{ category.name }}{% endblock %}
 
 {% block content %}
 
-  <section id="back-button">
-    <div class="container">
-      <a href="{% url 'index' %}">
-        <i class="fas fa-angle-left"></i>
-        Pagina principală
-      </a>
+  <!-- Breadcrumb -->
+  <div class="max-w-7xl mx-auto px-6 pt-8 pb-4">
+    <nav class="flex items-center gap-2 text-sm text-tt-text-light">
+      <a href="{% url 'index' %}" class="hover:text-tt-orange transition-colors">Produse</a>
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+      <span class="text-tt-navy font-medium">{{ category.name }}</span>
+    </nav>
+  </div>
+
+  <!-- Header -->
+  <section class="pb-10">
+    <div class="max-w-7xl mx-auto px-6">
+      <h1 class="text-3xl font-bold text-tt-navy">{{ category.name }}</h1>
     </div>
   </section>
 
-  <section id="products">
-    <div class="container">
-        <h3 class="text-center mb-5">{{ category.name }}</h3>
-    </div>
-    <div class="container px-0">
-      <div class="row justify-content-center">
-        <div class="card-deck w-100">
-          {% for product in products %}
-            <div class="col-md-4 col-lg-3 col-sm-6 align-items-stretch py-3">
-              <a href="{% url 'product' product.id %}">
-                {% if product.number %}
-                  <div class="card rounded">
-                    <img class="card-img-top rounded" src="{{ product.display_img }}" alt="{{ product.name }} {{ product.number }}">
-                    <div class="card-body rounded-bottom text-center">
-                        <span class="card-title">{{ product.name }} {{ product.number }}</span>
-                    </div>
-                  </div>
-                {% else %}
-                <div class="card rounded">
-                  <img class="card-img-top rounded" src="{{ product.display_img }}" alt="{{ product.name }}">
-                  <div class="card-body rounded-bottom text-center">
-                      <span class="card-title">{{ product.name }}</span>
-                  </div>
-                </div>
-                {% endif %}
-              </a>
+  <!-- Products grid -->
+  <section class="pb-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {% for product in products %}
+          <a href="{% url 'product' product.id %}" class="group">
+            <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-sm">
+              <div class="relative overflow-hidden">
+                <img class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500"
+                     src="{{ product.display_img }}"
+                     alt="{{ product.name }}{% if product.number %} {{ product.number }}{% endif %}">
+              </div>
+              <div class="p-4">
+                <h3 class="font-semibold text-tt-navy group-hover:text-tt-orange transition-colors">
+                  {{ product.name }}{% if product.number %} {{ product.number }}{% endif %}
+                </h3>
+                <span class="inline-flex items-center gap-1 text-sm text-tt-orange font-medium mt-1.5 group-hover:gap-2 transition-all">
+                  Detalii
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                </span>
+              </div>
             </div>
-          {% endfor %}
-        </div>
+          </a>
+        {% endfor %}
       </div>
     </div>
   </section>
 
-  <section id="gallery">
-    <hr>
-    <div class="container">
-      {% if gallery %}
-      <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
-        <div class="carousel-outer">
-          <div class="carousel-inner" role="listbox">
-            {% for img in gallery %}
-              {% if forloop.first %}
-                <div class="carousel-item active">
-                  <a href="{{ img.photo }}" data-lightbox="home-images">
-                    <div class="gallery-img" style="background-image: url('{{ img.photo }}')"></div>
-                  </a>
-                </div>
-              {% else %}
-                <div class="carousel-item">
-                  <a href="{{ img.photo }}" data-lightbox="home-images">
-                    <div class="gallery-img" style="background-image: url('{{ img.photo }}')"></div>
-                  </a>
-                </div>
-              {% endif %}
-            {% endfor %}
-          </div>
-          {% if gallery.count > 1%}
-            <a class="carousel-control-prev" href="#carousel-thumb" role="button" data-slide="prev">
-              <i class="fas fa-chevron-left"></i>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carousel-thumb" role="button" data-slide="next">
-              <i class="fas fa-chevron-right"></i>
-              <span class="sr-only">Next</span>
-            </a>
-          {% endif %}
-        </div>
-        <ol class="carousel-indicators" id="carousel-thumbnails">
+  <!-- Gallery -->
+  {% if gallery %}
+  <section class="pb-16">
+    <div class="max-w-5xl mx-auto px-6" x-data="{ lightboxOpen: false, lightboxSrc: '' }">
+      <h2 class="text-xl font-bold text-tt-navy mb-6">Galerie</h2>
+
+      <div class="swiper gallery-main rounded-2xl overflow-hidden bg-white shadow-sm">
+        <div class="swiper-wrapper">
           {% for img in gallery %}
-            {% if forloop.first %}
-              <li data-target="#carousel-thumb" data-slide-to="{{ forloop.counter0 }}" class="active">
-                <div class="gallery-thumbnail" style="background-image: url('{{ img.photo }}')"></div>
-              </li>
-            {% else %}
-              <li data-target="#carousel-thumb" data-slide-to="{{ forloop.counter0 }}">
-                <div class="gallery-thumbnail" style="background-image: url('{{ img.photo }}')"></div>
-              </li>
-            {% endif %}
+            <div class="swiper-slide">
+              <div class="h-[400px] sm:h-[500px] md:h-[550px] bg-contain bg-center bg-no-repeat cursor-zoom-in bg-white"
+                   style="background-image: url('{{ img.photo }}')"
+                   @click="lightboxSrc = '{{ img.photo }}'; lightboxOpen = true">
+              </div>
+            </div>
           {% endfor %}
-        </ol>
+        </div>
+        {% if gallery.count > 1 %}
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        {% endif %}
+      </div>
+
+      {% if gallery.count > 1 %}
+      <div class="swiper gallery-thumbs mt-4">
+        <div class="swiper-wrapper">
+          {% for img in gallery %}
+            <div class="swiper-slide !w-20 !h-20 rounded-xl overflow-hidden cursor-pointer opacity-50 [&.swiper-slide-thumb-active]:opacity-100 [&.swiper-slide-thumb-active]:ring-2 [&.swiper-slide-thumb-active]:ring-tt-navy transition-all">
+              <div class="w-full h-full bg-cover bg-center" style="background-image: url('{{ img.photo }}')"></div>
+            </div>
+          {% endfor %}
+        </div>
       </div>
       {% endif %}
+
+      <!-- Lightbox -->
+      <div x-show="lightboxOpen" x-transition x-cloak
+           @click.self="lightboxOpen = false" @keydown.escape.window="lightboxOpen = false"
+           class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-6">
+        <img :src="lightboxSrc" class="max-w-full max-h-full object-contain rounded-lg">
+        <button @click="lightboxOpen = false"
+                class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
     </div>
   </section>
+  {% endif %}
 
-  <section id="category-info">
-    <hr>
-    <div class="container justify-content-center">
-      <div class="row shadow" id="description-less">
-        {% if category.youtube_link %}
-          <div class="col-md-6 card-body card rounded-left">
-            <p>{{ category.description | safe | truncatewords:50 }}</p>
-          </div>
-          <div class="col-md-6 card-body card rounded-right">
-            <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="{{ category.youtube_link|construct_youtube_link }}" title="YouTube video player" allowfullscreen></iframe>
+  <!-- Description -->
+  {% if category.description %}
+  <section class="pb-16" x-data="{ expanded: false }">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="rounded-2xl overflow-hidden bg-gradient-to-br from-tt-navy-deep to-tt-navy-light text-white shadow-lg">
+        <div class="p-8">
+          <!-- Collapsed -->
+          <div x-show="!expanded">
+            <div class="prose-tt prose-tt-light">
+              {{ category.description | safe | truncatewords:60 }}
             </div>
           </div>
-        {% else %}
-        <div class="col-md-12 card-body card rounded">
-          <p>{{ category.description | safe | truncatewords:100 }}</p>
-        </div>
-        {% endif %}
-      </div>
-      <div class="text-center" id="read-more">
-        <a href="#description-more" id="read-more-button">
-          <p>Afișați mai mult</p>
-          <i class="fas fa-chevron-down"></i>
-        </a>
-      </div>
-      <div class="card card-body shadow rounded" id="description-more" style="display: none;">
-        <p>{{ category.description | safe }}</p>
-        {% if category.youtube_link %}
-          <div class="embed-responsive embed-responsive-21by9">
-            <iframe class="embed-responsive-item" src="{{ category.youtube_link|construct_youtube_link }}" title="YouTube video player" allowfullscreen></iframe>
+          <!-- Expanded -->
+          <div x-show="expanded" x-collapse x-cloak>
+            <div class="prose-tt prose-tt-light">
+              {{ category.description | safe }}
+            </div>
+            {% if category.youtube_link %}
+              <div class="relative pb-[56.25%] h-0 mt-8 rounded-xl overflow-hidden">
+                <iframe class="absolute inset-0 w-full h-full"
+                        src="{{ category.youtube_link|construct_youtube_link }}"
+                        title="YouTube video player" allowfullscreen></iframe>
+              </div>
+            {% endif %}
+            {% if category.external_link %}
+              <a href="{{ category.external_link }}" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-2 mt-6 px-5 py-2.5 bg-white/15 rounded-lg text-white font-medium hover:bg-white/25 transition-colors">
+                Mai multe detalii
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+              </a>
+            {% endif %}
           </div>
-        {% endif %}
-        {% if category.external_link %}
-          <p>Pentru a afla mai multe detalii, click
-            <a id="external-link" href="{{ category.external_link }}" target="_blank" rel="noopener noreferrer">aici</a>
-          </p>
-        {% endif %}
-        <br>
-      </div>
-      <div class="text-center" id="read-less" style="display: none;">
-        <a href="#description-less" id="read-less-button">
-          <i class="fas fa-chevron-up"></i>
-          <p>Afișați mai puțin</p>
-        </a>
+        </div>
+        <!-- Toggle -->
+        <button @click="expanded = !expanded"
+                class="w-full py-3 text-center text-sm font-semibold text-white/70 hover:text-white bg-white/5 hover:bg-white/10 transition-colors cursor-pointer flex items-center justify-center gap-2">
+          <span x-text="expanded ? 'Afișați mai puțin' : 'Afișați mai mult'"></span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform duration-300" :class="expanded ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+        </button>
       </div>
     </div>
   </section>
+  {% endif %}
 
+{% endblock %}
+
+{% block extra_js %}
+{% if gallery %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const thumbsSwiper = document.querySelector('.gallery-thumbs') ? new Swiper('.gallery-thumbs', {
+      slidesPerView: 'auto',
+      spaceBetween: 10,
+      watchSlidesProgress: true,
+    }) : null;
+    new Swiper('.gallery-main', {
+      spaceBetween: 10,
+      thumbs: thumbsSwiper ? { swiper: thumbsSwiper } : undefined,
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    });
+  });
+</script>
+{% endif %}
 {% endblock %}

@@ -1,72 +1,93 @@
-{% block offerModal %}
-    <section id="offer-modal">
-        <div class="modal fade" id="getOfferModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content about">
-                    <div class="modal-header text-center">
-                        <h4 class="modal-title w-100 font-weight-bold">Cere ofertă de preț</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form class="form-group align-items-center py-3" method="POST" enctype="multipart/form-data" action="{% url 'request_offer' %}">
-                        {% csrf_token %}
-                        <div class="getOfferForm-body mx-auto form-container">
-                            <div class="form-outline">
-                                <i class="far fa-user"></i>
-                                <input type="text" id="getOfferForm-name" name="name" class="form-control validate" placeholder="Nume, Prenume *" required />
-                                <label class="form-label" data-error="wrong" data-success="right" for="getOfferForm-name"></label>
-                            </div>
-                            <div class="form-outline">
-                                <i class="far fa-envelope"></i>
-                                <input type="email" id="getOfferForm-email" name="email" class="form-control validate" placeholder="E-mail *" required />
-                                <label class="form-label" data-error="wrong" data-success="right" for="getOfferForm-email"></label>
-                            </div>
-                            <div class="form-outline">
-                                <i class="fas fa-phone"></i>
-                                <input type="tel" id="getOfferForm-phone" name="phone" class="form-control validate" placeholder="Telefon *" required>
-                                <label class="form-label" data-error="wrong" data-success="right" for="getOfferForm-phone"></label>
-                            </div>
-                            <div class="form-outline">
-                                <div class="form-check form-check-inline">
-                                    <input type="checkbox" id="getOfferForm-transport" name="transport" class="form-check-input" aria-label="Doriți transport?">
-                                    <label class="form-check-label" for="getOfferForm-transport">Doriți transport?</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input type="checkbox" id="getOfferForm-assembly" name="assembly" class="form-check-input" aria-label="Doriți montaj?">
-                                    <label class="form-check-label" for="getOfferForm-assembly">Doriți montaj?</label>
-                                </div>
-                            </div>
-                            <div class="form-outline city" style="display: none;">
-                                <i class="fas fa-building"></i>
-                                <input type="text" id="getOfferForm-city" name="city" class="form-control validate" placeholder="Oraș *">
-                                <label class="form-label" data-error="wrong" data-success="right" for="getOfferForm-city"></label>
-                            </div>
-                            <div class="form-outline">
-                                <i class="far fa-comment-dots"></i>                       
-                                <textarea name="message" id="getOfferForm-message" class="form-control validate" placeholder="Mesajul tău... "></textarea>
-                                <label class="form-label" data-error="wrong" data-success="right" for="getOfferForm-message"></label>
-                            </div>
-                            <div class="form-outline">
-                                <label id="fileHelp" class="form-text text-muted">Aveți deja o schiță/poză ?</label>
-                            </div>
-                            <div class="form-outline">
-                                <i class="far fa-file"></i>                       
-                                <input type="file" name="file" id="getOfferForm-file" class="form-control-file btn bg-white">
-                            </div>
-                            <div class="form-outline">
-                                <input type="hidden" name="product" value="{{ product.id }}" id="getOfferForm-product" class="form-control">
-                            </div>
-                            <div class="form-outline text-center">
-                                <div class="g-recaptcha" data-sitekey="6LfJBtYcAAAAAGg8DDZ-72zIcvUMcEM_Lm7gmVn9" data-callback="enableSubmitBtn"></div>
-                            </div>
-                        </div>
-                        <div class="getOfferForm-footer d-flex justify-content-center content">
-                            <button class="btn btn-submit" type="submit" id="submitButton" disabled>Trimite</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<!-- Modal (requires parent x-data with showModal) -->
+<div x-show="showModal" x-transition x-cloak
+     @keydown.escape.window="showModal = false"
+     class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+  <div class="bg-white rounded-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+       @click.outside="showModal = false">
+    <!-- Header -->
+    <div class="flex justify-between items-center px-6 py-5 border-b border-tt-border">
+      <h4 class="text-lg font-bold text-tt-navy">Cere ofertă de preț</h4>
+      <button @click="showModal = false" class="w-8 h-8 rounded-full bg-tt-bg flex items-center justify-center text-tt-text-light hover:text-tt-error hover:bg-tt-error/10 transition-colors cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+    </div>
+
+    <!-- Form -->
+    <form method="POST" enctype="multipart/form-data" action="{% url 'request_offer' %}"
+          class="p-6 space-y-4"
+          x-data="{
+            showCity: false,
+            transport: false,
+            assembly: false,
+            onAssemblyChange() {
+              if (this.assembly && !this.transport) this.transport = true;
+              this.showCity = this.assembly || this.transport;
+            },
+            onTransportChange() {
+              this.showCity = this.assembly || this.transport;
+            }
+          }">
+      {% csrf_token %}
+
+      <div>
+        <label class="block text-sm font-medium text-tt-navy mb-1.5">Nume, Prenume *</label>
+        <input type="text" name="name" required class="w-full rounded-xl border-tt-border focus:border-tt-navy focus:ring-tt-navy" />
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-tt-navy mb-1.5">E-mail *</label>
+          <input type="email" name="email" required class="w-full rounded-xl border-tt-border focus:border-tt-navy focus:ring-tt-navy" />
         </div>
-    </section>
-{% endblock %}
+        <div>
+          <label class="block text-sm font-medium text-tt-navy mb-1.5">Telefon *</label>
+          <input type="tel" name="phone" required class="w-full rounded-xl border-tt-border focus:border-tt-navy focus:ring-tt-navy" />
+        </div>
+      </div>
+
+      <!-- Checkboxes -->
+      <div class="flex flex-wrap gap-6">
+        <label class="flex items-center gap-2 cursor-pointer text-sm">
+          <input type="checkbox" name="transport" x-model="transport" @change="onTransportChange()"
+                 class="rounded border-tt-border text-tt-orange focus:ring-tt-navy">
+          Doriți transport?
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer text-sm">
+          <input type="checkbox" name="assembly" x-model="assembly" @change="onAssemblyChange()"
+                 class="rounded border-tt-border text-tt-orange focus:ring-tt-navy">
+          Doriți montaj?
+        </label>
+      </div>
+
+      <!-- City -->
+      <div x-show="showCity" x-collapse x-cloak>
+        <label class="block text-sm font-medium text-tt-navy mb-1.5">Oraș *</label>
+        <input type="text" name="city" :required="showCity" class="w-full rounded-xl border-tt-border focus:border-tt-navy focus:ring-tt-navy" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-tt-navy mb-1.5">Mesajul tău</label>
+        <textarea name="message" rows="3" class="w-full rounded-xl border-tt-border focus:border-tt-navy focus:ring-tt-navy"></textarea>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-tt-navy mb-1.5">Aveți deja o schiță/poză?</label>
+        <input type="file" name="file"
+               class="block w-full text-sm text-tt-text-light file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-tt-navy/10 file:text-tt-orange file:font-medium hover:file:bg-tt-navy/20 cursor-pointer" />
+      </div>
+
+      <input type="hidden" name="product" value="{{ product.id }}">
+
+      <div class="flex justify-center pt-2">
+        <div class="g-recaptcha" data-sitekey="6LfJBtYcAAAAAGg8DDZ-72zIcvUMcEM_Lm7gmVn9" data-callback="enableSubmitBtn"></div>
+      </div>
+
+      <div class="text-center pt-2">
+        <button type="submit" id="submitButton" disabled
+                class="w-full bg-tt-navy text-white font-semibold py-3 rounded-xl hover:bg-tt-navy-deep transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed">
+          Trimite cererea
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
