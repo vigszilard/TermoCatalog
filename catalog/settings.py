@@ -16,6 +16,7 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(','
 CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', '').split(',') if os.environ.get('CSRF_TRUSTED_ORIGINS') else []
 
 INSTALLED_APPS = [
+    'unfold',
     'admin_reorder',
     'products.apps.ProductsConfig',
     'designs.apps.DesignsConfig',
@@ -124,6 +125,28 @@ CKEDITOR_CONFIGS = {
             ['Undo', 'Redo'], ['Source'],
         ],
         'skin': 'moono',
+    },
+}
+
+# Unfold admin theme
+UNFOLD = {
+    "SITE_TITLE": "Termototal Admin",
+    "SITE_HEADER": "Termototal",
+    "SITE_SYMBOL": "diamond",
+    "COLORS": {
+        "primary": {
+            "50": "#FFF7ED",
+            "100": "#FFEDD5",
+            "200": "#FED7AA",
+            "300": "#FDBA74",
+            "400": "#FB923C",
+            "500": "#F7941D",
+            "600": "#EA580C",
+            "700": "#C2410C",
+            "800": "#9A3412",
+            "900": "#7C2D12",
+            "950": "#431407",
+        },
     },
 }
 

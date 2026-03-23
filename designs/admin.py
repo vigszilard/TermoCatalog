@@ -1,10 +1,11 @@
 from django.contrib import admin
+from unfold.admin import ModelAdmin
 
 from .models import Sandblast, Printing
 
 
 @admin.register(Sandblast)
-class SandblastAdmin(admin.ModelAdmin):
+class SandblastAdmin(ModelAdmin):
     list_display = ('id', 'name', 'display_img_preview', 'wide', 'high')
     list_display_links = ('id', 'name')
     list_editable = ('wide', 'high')
@@ -14,7 +15,7 @@ class SandblastAdmin(admin.ModelAdmin):
 
 
 @admin.register(Printing)
-class PrintingAdmin(admin.ModelAdmin):
+class PrintingAdmin(ModelAdmin):
     list_display = ('id', 'name', 'display_img_preview', 'wide', 'high')
     list_display_links = ('id', 'name')
     list_editable = ('wide', 'high')
