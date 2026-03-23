@@ -17,7 +17,6 @@ CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', '').split(',') if 
 
 INSTALLED_APPS = [
     'unfold',
-    'admin_reorder',
     'products.apps.ProductsConfig',
     'designs.apps.DesignsConfig',
     'categories.apps.CategoriesConfig',
@@ -33,7 +32,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'admin_reorder.middleware.ModelAdminReorder',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -44,13 +42,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ADMIN_REORDER = (
-    {'app': 'auth', 'label': 'Authorisation', 'models': ('auth.User', )},
-    'pages',
-    'designs',
-    'categories',
-    'products'
-)
 
 ROOT_URLCONF = 'catalog.urls'
 
@@ -115,6 +106,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # CKEditor
+LOGIN_REDIRECT_URL = '/admin/'
+
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar_Full': [
@@ -130,9 +123,34 @@ CKEDITOR_CONFIGS = {
 
 # Unfold admin theme
 UNFOLD = {
-    "SITE_TITLE": "Termototal Admin",
+    "SITE_TITLE": "Termototal",
     "SITE_HEADER": "Termototal",
-    "SITE_SYMBOL": "diamond",
+    "SITE_URL": "/",
+    "SITE_ICON": lambda request: "/static/img/termo-black.png",
+    "SHOW_HISTORY": True,
+    "SHOW_VIEW_ON_SITE": True,
+    "SIDEBAR": {
+        "navigation": [
+            {
+                "title": "Administrare",
+                "items": [
+                    {"title": "Pagini", "icon": "article", "link": "/admin/pages/"},
+                    {"title": "Categorii", "icon": "category", "link": "/admin/categories/category/"},
+                    {"title": "Produse", "icon": "inventory_2", "link": "/admin/products/product/"},
+                    {"title": "Sablare", "icon": "blur_on", "link": "/admin/designs/sandblast/"},
+                    {"title": "Printare", "icon": "print", "link": "/admin/designs/printing/"},
+                    {"title": "Parteneri", "icon": "handshake", "link": "/admin/pages/partner/"},
+                    {"title": "FAQ", "icon": "help", "link": "/admin/pages/faqpage/"},
+                ],
+            },
+            {
+                "title": "Setări",
+                "items": [
+                    {"title": "Utilizatori", "icon": "person", "link": "/admin/auth/user/"},
+                ],
+            },
+        ],
+    },
     "COLORS": {
         "primary": {
             "50": "#FFF7ED",
@@ -146,6 +164,14 @@ UNFOLD = {
             "800": "#9A3412",
             "900": "#7C2D12",
             "950": "#431407",
+        },
+        "font": {
+            "subtle-light": "107 114 128",
+            "subtle-dark": "156 163 175",
+            "default-light": "75 85 99",
+            "default-dark": "209 213 219",
+            "important-light": "17 24 39",
+            "important-dark": "243 244 246",
         },
     },
 }

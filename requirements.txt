@@ -1,7 +1,6 @@
 Django>=4.2,<5
 django-ckeditor
 django-js-asset
-django-modeladmin-reorder
 folium
 Pillow
 psycopg2-binary
