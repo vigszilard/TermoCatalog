@@ -87,8 +87,17 @@
         </div>
 
         <!-- Map -->
-        <div class="lg:col-span-2 rounded-2xl overflow-hidden shadow-sm min-h-[500px]">
-          {{ map | safe }}
+        <div class="lg:col-span-2 rounded-2xl overflow-hidden shadow-sm">
+          <style>
+            .map-wrap > div { width: 100% !important; }
+            .map-wrap > div > div { position: relative !important; width: 100% !important; height: 350px !important; padding-bottom: 0 !important; }
+            .map-wrap > div > div > span { display: none !important; }
+            .map-wrap > div > div > iframe { position: absolute !important; top: 0; left: 0; width: 100% !important; height: 100% !important; border: 0; }
+            @media (min-width: 1024px) { .map-wrap { min-height: 100%; } .map-wrap > div { height: 100% !important; } .map-wrap > div > div { height: 100% !important; } }
+          </style>
+          <div class="map-wrap h-full">
+            {{ map | safe }}
+          </div>
         </div>
       </div>
 
